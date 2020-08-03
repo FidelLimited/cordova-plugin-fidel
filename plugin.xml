@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-fidel" version="1.0.0">
+    <name>Cordova Plugin Fidel</name>
+    <description>Cordova Plugin that allows developers to access the native Fidel iOS & Android SDKs</description>
+    <license>Apache 2.0</license>
+    <keywords>fidel,plugin, cordova, ios, android, cards, card, linking, visa, mastercard, american express, loyalty</keywords>
+    <js-module src="www/Fidel.js" name="fidel">
+        <clobbers target="window.plugin.fidel" />
+    </js-module>
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Fidel">
+                <param name="android-package" value="com.fidelcordovalibrary"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/main/java/com/fidelcordovalibrary/Fidel.java" target-dir="src/android/main/java/com/fidelcordovalibrary/" />
+    </platform>
+</plugin>

@@ -1,0 +1,45 @@
+{
+  "name": "cordova-fidel-plugin",
+  "displayName": "Cordova Fidel Plugin",
+  "version": "1.0.0",
+  "description": "Cordova Plugin that allows developers to access the native Fidel iOS & Android SDKs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "fidel",
+    "android",
+    "ios",
+    "card",
+    "cards",
+    "linking",
+    "visa",
+    "mastercard",
+    "amex",
+    "american express",
+    "loyalty"
+  ],
+  "dependencies": {
+    "cordova-android": "^8.1.0"
+  },
+  "devDependencies": {
+    "@cordova/eslint-config": "^3.0.0",
+    "cordova-plugin-whitelist": "^1.3.4"
+  },
+  "author": {
+    "name": "Fidel",
+    "email": "developer@fidel.uk"
+  },
+  "license": "MIT",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
+}

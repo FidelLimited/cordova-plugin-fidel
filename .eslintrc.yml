@@ -1,0 +1,11 @@
+root: true
+
+extends: '@cordova/eslint-config/node'
+
+overrides:
+
+- files: [spec/**/*.js]
+  extends: '@cordova/eslint-config/node-tests'
+
+- files: [cordova-js-src/**/*.js]
+  extends: '@cordova/eslint-config/browser'
