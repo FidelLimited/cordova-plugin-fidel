@@ -14,7 +14,7 @@
                 <param name="android-package" value="com.fidelcordovalibrary"/>
             </feature>
         </config-file>
-
+        <framework src="com.github.FidelLimited:android-sdk:1.4.0" />
         <source-file src="src/android/main/java/com/fidelcordovalibrary/Fidel.java" target-dir="src/android/main/java/com/fidelcordovalibrary/" />
     </platform>
 </plugin>
