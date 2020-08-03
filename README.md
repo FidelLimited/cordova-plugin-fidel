@@ -1,1 +1,1 @@
-# cordova-plugin-fidel
+# Fidel plugin for Cordova
