@@ -1,17 +1,18 @@
 
   Fidel.prototype = {
-    openForm: function (successCallback, errorCallback, options) {
-      var opts = options || {};
-      cordova.exec(successCallback, errorCallback, "Fidel", "openForm", [opts]);
+    openForm: function (successCallback, errorCallback) {
+      cordova.exec(successCallback, errorCallback, "Fidel", "openForm", []);
     },
   
-    setup: function (successCallback, errorCallback) {
-      cordova.exec(successCallback, errorCallback, "Fidel", "setup", []);
+    setup: function (successCallback, errorCallback, options) {
+      var opts = options || {};
+      cordova.exec(successCallback, errorCallback, "Fidel", "setup", [opts]);
     },
 
-    setOptions: function (successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "Fidel", "setOptions", []);
-      },
+    setOptions: function (successCallback, errorCallback, options) {
+        var opts = options || {};
+        cordova.exec(successCallback, errorCallback, "Fidel", "setOptions", [opts]);
+    },
   };
   
   Fidel.install = function () {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <androidx.appcompat.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
+
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+        <FrameLayout
+            android:id="@+id/fdl_close_button_wrapping_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/fdl_action_bar_close_button_padding" >
+            <ImageButton
+                android:id="@+id/fdl_action_bar_btn_close"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="start"
+                android:background="@drawable/fdl_btn_close"
+                android:contentDescription="@string/fdl_card_link_toolbar_close_description" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_marginStart="@dimen/fdl_action_bar_title_left_margin"
+            android:id="@+id/fdl_action_bar_title"
+            style="@style/fdl_FidelActionBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/fdl_card_link_toolbar_title"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+

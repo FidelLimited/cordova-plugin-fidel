@@ -15,6 +15,6 @@
             </feature>
         </config-file>
         <framework src="com.github.FidelLimited:android-sdk:1.4.0" />
-        <source-file src="src/android/main/java/com/fidelcordovalibrary/Fidel.java" target-dir="src/android/main/java/com/fidelcordovalibrary/" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/FidelPlugin.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/" />
     </platform>
 </plugin>
