@@ -12,8 +12,12 @@ public final class FidelSetupAdapter implements DataProcessor<JSONObject> {
     @Override
     public void process(JSONObject data) {
         try {
-            Fidel.apiKey = data.getString(API_KEY);
-            Fidel.programId = data.getString(PROGRAM_ID_KEY);
+            if (data.has(API_KEY)) {
+                Fidel.apiKey = data.getString(API_KEY);
+            }
+            if (data.has(PROGRAM_ID_KEY)) {
+                Fidel.programId = data.getString(PROGRAM_ID_KEY);
+            }
         }
         catch (Exception e) {
             e.printStackTrace();

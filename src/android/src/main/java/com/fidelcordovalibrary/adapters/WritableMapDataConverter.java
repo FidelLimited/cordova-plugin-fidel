@@ -18,10 +18,12 @@ public final class WritableMapDataConverter implements DataConverter<Object, JSO
     }
     @Override
     public JSONObject getConvertedDataFor(Object data) {
+        System.out.println("data is " + data);
         if (data == null) {
             return null;
         }
         JSONObject map = writableMapFactory.create();
+        System.out.println("map is " + map);
         try {
             for (Field field: data.getClass().getDeclaredFields()) {
                 if (field.getType() == String.class) {

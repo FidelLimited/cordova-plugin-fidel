@@ -6,12 +6,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public final class FidelCardSchemesAdapter implements CardSchemesAdapter {
@@ -43,9 +45,17 @@ public final class FidelCardSchemesAdapter implements CardSchemesAdapter {
         if (arrayToAdapt == null) {
             return null;
         }
+
         ArrayList<Integer> integerArrayToAdapt = new ArrayList<>();
-        ArrayList<Object> arrayToAdaptObjects = new Gson().fromJson(arrayToAdapt.toString(),
-                new TypeToken<List<Object>>(){}.getType());
+        ArrayList<Object> arrayToAdaptObjects = new ArrayList<Object>();
+        for (int i= 0; i < arrayToAdapt.length(); i++) {
+            try {
+                arrayToAdaptObjects.add(arrayToAdapt.get(i));
+            }
+            catch (JSONException e) {
+                return null;
+            }
+        }
         for (Object objectToAdapt: arrayToAdaptObjects) {
             if (objectToAdapt.getClass() == Integer.class) {
                 integerArrayToAdapt.add((Integer)objectToAdapt);

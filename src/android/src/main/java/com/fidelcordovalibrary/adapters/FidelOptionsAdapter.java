@@ -58,6 +58,7 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
 
     @Override
     public void process(JSONObject data) {
+        System.out.println("In process, data is " + data);
         if (valueIsValidFor(data, BANNER_IMAGE_KEY)) {
             try {
                 imageAdapter.process(data.getJSONObject(BANNER_IMAGE_KEY));
@@ -122,6 +123,7 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
                 }
             }
             catch (JSONException e) {
+                e.printStackTrace();
                 Fidel.metaData = null;
             }
         }
@@ -149,7 +151,12 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
 //    }
 
     private boolean valueIsValidFor(JSONObject map, String key) {
-        return (map.has(key) && !map.isNull(key));
+        try {
+            return (map.has(key) && !map.isNull(key) && !map.get(key).equals(""));
+        }
+        catch (JSONException e) {
+            return false;
+        }
     }
 
     @Override

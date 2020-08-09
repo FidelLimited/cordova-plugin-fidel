@@ -4,10 +4,6 @@
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/07044138e4e874d0d569dd1deb5492bd/play-services-base-17.1.0/res/drawable/common_google_signin_btn_icon_dark.xml"
     },
     {
-        "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_btn_colored_material.xml",
-        "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_btn_colored_material.xml"
-    },
-    {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_ratingbar_material.xml",
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_ratingbar_material.xml"
     },
@@ -20,12 +16,12 @@
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/07044138e4e874d0d569dd1deb5492bd/play-services-base-17.1.0/res/drawable/common_google_signin_btn_text_light_focused.xml"
     },
     {
-        "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
-        "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_list_selector_background_transition_holo_light.xml"
-    },
-    {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/notification_bg_low.xml",
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/76f2b6439d16df60df3177021482ee5a/core-1.1.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_list_selector_background_transition_holo_light.xml",
+        "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_list_selector_background_transition_holo_light.xml"
     },
     {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/tooltip_frame_dark.xml",
@@ -86,10 +82,6 @@
     {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/fdl_ic_card_mastercard.png",
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/4f4407da1cd48cb362ca4ba27bc865f0/android-sdk-1.4.0/res/drawable/fdl_ic_card_mastercard.png"
-    },
-    {
-        "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_list_divider_material.xml",
-        "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_list_divider_material.xml"
     },
     {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/fdl_btn_close.png",
@@ -212,10 +204,6 @@
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_textfield_search_material.xml"
     },
     {
-        "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_edit_text_material.xml",
-        "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_edit_text_material.xml"
-    },
-    {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/btn_checkbox_unchecked_to_checked_mtrl_animation.xml",
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/btn_checkbox_unchecked_to_checked_mtrl_animation.xml"
     },
@@ -270,10 +258,6 @@
     {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_text_light_normal.xml",
         "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/07044138e4e874d0d569dd1deb5492bd/play-services-base-17.1.0/res/drawable/common_google_signin_btn_text_light_normal.xml"
-    },
-    {
-        "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_dialog_material_background.xml",
-        "source": "/Users/narcis/.gradle/caches/transforms-2/files-2.1/f209091eb3926c649f0b3346884e478c/appcompat-1.1.0/res/drawable/abc_dialog_material_background.xml"
     },
     {
         "merged": "/Users/narcis/CordovaProjects/cordova-plugin-fidel/src/android/build/intermediates/res/merged/debug/drawable/abc_list_selector_holo_dark.xml",
