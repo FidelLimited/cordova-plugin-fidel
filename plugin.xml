@@ -2,19 +2,40 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-plugin-fidel" version="1.0.0">
     <name>Cordova Plugin Fidel</name>
-    <description>Cordova Plugin that allows developers to access the native Fidel iOS & Android SDKs</description>
+    <description>Cordova Plugin that allows developers to access the native Fidel iOS and Android SDKs</description>
     <license>Apache 2.0</license>
     <keywords>fidel,plugin, cordova, ios, android, cards, card, linking, visa, mastercard, american express, loyalty</keywords>
-    <js-module src="www/Fidel.js" name="fidel">
+    <!-- <js-module src="www/Fidel.js" name="Fidel">
         <clobbers target="window.plugin.fidel" />
+    </js-module> -->
+    <js-module src="www/FidelConstants.js" name="FidelConstants">
+        <clobbers target="FidelConstants" />
     </js-module>
     <platform name="android">
         <config-file target="config.xml" parent="/*">
-            <feature name="Fidel">
-                <param name="android-package" value="com.fidelcordovalibrary"/>
+            <feature name="FidelPlugin">
+                <param name="android-package" value="com.fidelcordovalibrary.FidelPlugin"/>
             </feature>
         </config-file>
         <framework src="com.github.FidelLimited:android-sdk:1.4.0" />
+        <framework src="javax.annotation:javax.annotation-api:1.3.2" />
+        <framework src="com.google.code.gson:gson:2.8.5" />
+        <!-- <framework src="androidx.annotation:annotation:1.1.0" /> -->
+        <framework src="org.jetbrains:annotations-java5:15.0" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/FidelPlugin.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelSetupAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/ImageFromReadableMapAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelOptionsAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ConstantsProvider.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataOutput.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataProcessor.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ObjectFactory.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/CallbackActivityEventListener.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events/" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/CallbackInput.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events/" />
     </platform>
 </plugin>
