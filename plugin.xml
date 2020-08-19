@@ -28,6 +28,7 @@
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelOptionsAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/WritableMapDataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ConstantsProvider.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
@@ -37,5 +38,6 @@
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ObjectFactory.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/CallbackActivityEventListener.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events/" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/CallbackInput.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events/" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/ErrorEventEmitter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events" />
     </platform>
 </plugin>

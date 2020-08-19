@@ -1,17 +1,20 @@
-//package com.fidelcordovalibrary.events;
-//
-//import com.facebook.react.bridge.ReactApplicationContext;
-//import com.facebook.react.bridge.WritableMap;
-//import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter;
-//import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
-//
-//import org.json.JSONObject;
-//
-//public final class ErrorEventEmitter implements DataProcessor<JSONObject> {
-//
-//
-//    @Override
-//    public void process(JSONObject data) {
-//        if
-//    }
-//}
+package com.fidelcordovalibrary.events;
+
+import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
+import android.content.Context;
+
+import org.json.JSONObject;
+
+public final class ErrorEventEmitter implements DataProcessor<JSONObject> {
+
+    private Context context;
+
+    public ErrorEventEmitter(Context context) {
+        this.context = context;
+    }
+
+   @Override
+   public void process(JSONObject data) {
+       //TODO: see if this class is needed
+   }
+}

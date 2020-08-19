@@ -35,11 +35,12 @@ public final class CallbackActivityEventListener
                                  int resultCode,
                                  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.i("i","In onActivityResult, requestCode is: " + requestCode);
         if (requestCode == Fidel.FIDEL_LINK_CARD_REQUEST_CODE) {
             LinkResult result = data.getParcelableExtra(Fidel.FIDEL_LINK_CARD_RESULT_CARD);
             LinkResultError error = result.getError();
-            //Log.i("i","In onActivityResult, result / error is: " + result + " / " + error);
-            System.out.println("In onActivityResult, result / error is: " + result + " / " + error);
+            Log.i("i","In onActivityResult, result / error is: " + result + " / " + error);
+            //System.out.println("In onActivityResult, result / error is: " + result + " / " + error);
             if (error == null) {
                 JSONObject convertedLinkResult = linkResultConverter.getConvertedDataFor(result);
                 callback.success(convertedLinkResult);

@@ -2,10 +2,9 @@
   "name": "cordova-fidel-plugin",
   "displayName": "Cordova Fidel Plugin",
   "version": "1.0.0",
-  "description": "Cordova Plugin that allows developers to access the native Fidel iOS & Android SDKs",
+  "description": "Cordova Plugin that allows developers to access the native Fidel iOS and Android SDKs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
   "keywords": [

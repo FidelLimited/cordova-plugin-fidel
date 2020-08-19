@@ -1,1 +1,4 @@
 node_modules/
+src/android/.gradle
+src/android/.idea
+src/android/build

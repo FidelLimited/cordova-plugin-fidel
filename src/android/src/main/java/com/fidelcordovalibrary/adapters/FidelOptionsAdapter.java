@@ -20,7 +20,7 @@ import java.util.Map;
 
 public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, DataOutput<Bitmap>, ConstantsProvider {
 
-    public static final String BANNER_IMAGE_KEY = "bannerImage";
+    public static final String BANNER_IMAGE_KEY = "showBannerImage";
     public static final String AUTO_SCAN_KEY = "autoScan";
     public static final String COMPANY_NAME_KEY = "companyName";
     public static final String PROGRAM_NAME_KEY = "programName";
@@ -44,11 +44,11 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
                     CARD_SCHEMES_KEY
             ));
 
-    private final DataProcessor<JSONObject> imageAdapter;
+    private final DataProcessor<Boolean> imageAdapter;
     private final CountryAdapter countryAdapter;
     private final CardSchemesAdapter cardSchemesAdapter;
 
-    public FidelOptionsAdapter(DataProcessor<JSONObject> imageAdapter,
+    public FidelOptionsAdapter(DataProcessor<Boolean> imageAdapter,
                                CountryAdapter countryAdapter,
                                CardSchemesAdapter cardSchemesAdapter) {
         this.imageAdapter = imageAdapter;
@@ -61,7 +61,7 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
         System.out.println("In process, data is " + data);
         if (valueIsValidFor(data, BANNER_IMAGE_KEY)) {
             try {
-                imageAdapter.process(data.getJSONObject(BANNER_IMAGE_KEY));
+                imageAdapter.process(data.getBoolean(BANNER_IMAGE_KEY));
             }
             catch (JSONException e) {
                 e.printStackTrace();
