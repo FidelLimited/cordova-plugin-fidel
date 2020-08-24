@@ -5,9 +5,9 @@
     <description>Cordova Plugin that allows developers to access the native Fidel iOS and Android SDKs</description>
     <license>Apache 2.0</license>
     <keywords>fidel,plugin, cordova, ios, android, cards, card, linking, visa, mastercard, american express, loyalty</keywords>
-    <!-- <js-module src="www/Fidel.js" name="Fidel">
-        <clobbers target="window.plugin.fidel" />
-    </js-module> -->
+    <js-module src="www/FidelFunctions.js" name="FidelFunctions">
+        <clobbers target="window.plugins.fidelfunctions" />
+    </js-module>
     <js-module src="www/FidelConstants.js" name="FidelConstants">
         <clobbers target="FidelConstants" />
     </js-module>
