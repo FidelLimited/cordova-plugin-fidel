@@ -41,7 +41,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class FidelPlugin extends CordovaPlugin {
 
-    private CallbackInput callbackInput;
+    //private CallbackInput callbackInput;
     private DataProcessor<JSONObject> setupProcessor;
     private FidelOptionsAdapter optionsAdapter;
     private List<ConstantsProvider> constantsProviderList;
@@ -101,8 +101,8 @@ public class FidelPlugin extends CordovaPlugin {
                 });
         ErrorEventEmitter errorEventEmitter =
                 new ErrorEventEmitter(context);
-        this.callbackInput =
-                new CallbackActivityEventListener(linkResultConverter, errorEventEmitter);
+//        this.callbackInput =
+//                new CallbackActivityEventListener(linkResultConverter, errorEventEmitter);
         this.callback = callbackContext;
     }
 
@@ -134,14 +134,7 @@ public class FidelPlugin extends CordovaPlugin {
              }
              else {
                  JSONObject convertedError = linkResultConverter.getConvertedDataFor(error);
-                 //TODO: If this works, create ErrorProcessor interface with process method and implement it in ErrorEmitter with input params data + callback
-                 if (convertedError == null) {
-                     callback.error("CardLinkFailed");
-                 }
-                 else {
-                     System.out.println("Callback is " + callback);
-                     callback.error(convertedError);
-                 }
+                 callback.error(convertedError);
              }
          }
     }
@@ -152,7 +145,7 @@ public class FidelPlugin extends CordovaPlugin {
             Intent intent = new Intent(activity, EnterCardDetailsActivity.class);
             cordova.startActivityForResult((CordovaPlugin) this, intent, Fidel.FIDEL_LINK_CARD_REQUEST_CODE);
         }
-        callbackInput.callbackIsReady(callback);
+        //callbackInput.callbackIsReady(callback);
     }
 
     private void setup(JSONArray map) {
