@@ -59,31 +59,7 @@ public class FidelPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
         Log.i("i","In execute, action is: " + action);
-        this.setupProcessor = new FidelSetupAdapter();
-        Context context = this.cordova.getActivity().getApplicationContext();
-        ImageFromReadableMapAdapter imageAdapter =
-                new ImageFromReadableMapAdapter(context);
-        CountryAdapter countryAdapter =
-                new FidelCountryAdapter();
-        FidelCardSchemesAdapter cardSchemesAdapter =
-                new FidelCardSchemesAdapter();
-        this.optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
-        imageAdapter.bitmapOutput = this.optionsAdapter;
-        this.constantsProviderList =
-                new ArrayList<>();
-        constantsProviderList.add(optionsAdapter);
-        this.linkResultConverter =
-        new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
-            @Override
-            public JSONObject create() {
-                return new JSONObject();
-            }
-        });
-        ErrorEventEmitter errorEventEmitter =
-                new ErrorEventEmitter(context);
-        this.callbackInput =
-                new CallbackActivityEventListener(linkResultConverter, errorEventEmitter);
-        this.callback = callbackContext;
+        initialize(callbackContext);
         switch (action) {
             case OPEN_FORM:
             cordova.getActivity().runOnUiThread(new Runnable() {
@@ -100,6 +76,34 @@ public class FidelPlugin extends CordovaPlugin {
                 return true;
         }
         return false;
+    }
+
+    private void initialize(CallbackContext callbackContext) {
+        this.setupProcessor = new FidelSetupAdapter();
+        Context context = this.cordova.getActivity().getApplicationContext();
+        ImageFromReadableMapAdapter imageAdapter =
+                new ImageFromReadableMapAdapter(context);
+        CountryAdapter countryAdapter =
+                new FidelCountryAdapter();
+        FidelCardSchemesAdapter cardSchemesAdapter =
+                new FidelCardSchemesAdapter();
+        this.optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
+        imageAdapter.bitmapOutput = this.optionsAdapter;
+        this.constantsProviderList =
+                new ArrayList<>();
+        constantsProviderList.add(optionsAdapter);
+        this.linkResultConverter =
+                new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
+                    @Override
+                    public JSONObject create() {
+                        return new JSONObject();
+                    }
+                });
+        ErrorEventEmitter errorEventEmitter =
+                new ErrorEventEmitter(context);
+        this.callbackInput =
+                new CallbackActivityEventListener(linkResultConverter, errorEventEmitter);
+        this.callback = callbackContext;
     }
 
     @Override
