@@ -12,8 +12,8 @@ import com.fidel.sdk.LinkResultError;
 import com.fidel.sdk.view.EnterCardDetailsActivity;
 import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.ConstantsProvider;
+import com.fidelcordovalibrary.adapters.abstraction.DataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
-import com.fidelcordovalibrary.events.CallbackInput;
 import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.adapters.FidelSetupAdapter;
 import com.fidelcordovalibrary.adapters.ImageFromReadableMapAdapter;
@@ -21,8 +21,7 @@ import com.fidelcordovalibrary.adapters.FidelCountryAdapter;
 import com.fidelcordovalibrary.adapters.FidelCardSchemesAdapter;
 import com.fidelcordovalibrary.adapters.WritableMapDataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
-import com.fidelcordovalibrary.events.CallbackActivityEventListener;
-import com.fidelcordovalibrary.events.ErrorEventEmitter;
+
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -33,19 +32,14 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.jetbrains.annotations.Nullable;
 
 public class FidelPlugin extends CordovaPlugin {
 
-    //private CallbackInput callbackInput;
     private DataProcessor<JSONObject> setupProcessor;
     private FidelOptionsAdapter optionsAdapter;
     private List<ConstantsProvider> constantsProviderList;
-    private WritableMapDataConverter linkResultConverter;
+    private DataConverter<Object, JSONObject> linkResultConverter;
     private CallbackContext callback;
 
     public FidelPlugin() {
@@ -59,7 +53,8 @@ public class FidelPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
         Log.i("i","In execute, action is: " + action);
-        initialize(callbackContext);
+        Context context = this.cordova.getActivity().getApplicationContext();
+        initialize(callbackContext, context);
         switch (action) {
             case OPEN_FORM:
             cordova.getActivity().runOnUiThread(new Runnable() {
@@ -78,32 +73,26 @@ public class FidelPlugin extends CordovaPlugin {
         return false;
     }
 
-    private void initialize(CallbackContext callbackContext) {
-        this.setupProcessor = new FidelSetupAdapter();
-        Context context = this.cordova.getActivity().getApplicationContext();
+    public void initialize(CallbackContext callbackContext, Context context) {
+        setupProcessor = new FidelSetupAdapter();
         ImageFromReadableMapAdapter imageAdapter =
                 new ImageFromReadableMapAdapter(context);
         CountryAdapter countryAdapter =
                 new FidelCountryAdapter();
         FidelCardSchemesAdapter cardSchemesAdapter =
                 new FidelCardSchemesAdapter();
-        this.optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
-        imageAdapter.bitmapOutput = this.optionsAdapter;
-        this.constantsProviderList =
+        optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
+        imageAdapter.bitmapOutput = optionsAdapter;
+        constantsProviderList =
                 new ArrayList<>();
         constantsProviderList.add(optionsAdapter);
-        this.linkResultConverter =
-                new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
-                    @Override
-                    public JSONObject create() {
-                        return new JSONObject();
-                    }
-                });
-        ErrorEventEmitter errorEventEmitter =
-                new ErrorEventEmitter(context);
-//        this.callbackInput =
-//                new CallbackActivityEventListener(linkResultConverter, errorEventEmitter);
-        this.callback = callbackContext;
+        linkResultConverter = new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
+            @Override
+            public JSONObject create() {
+                return new JSONObject();
+            }
+        });
+        callback = callbackContext;
     }
 
     @Override
@@ -118,8 +107,7 @@ public class FidelPlugin extends CordovaPlugin {
     }
 
     @Override
-    public void onActivityResult(//Activity activity,
-                                 int requestCode,
+    public void onActivityResult(int requestCode,
                                  int resultCode,
                                  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -145,7 +133,6 @@ public class FidelPlugin extends CordovaPlugin {
             Intent intent = new Intent(activity, EnterCardDetailsActivity.class);
             cordova.startActivityForResult((CordovaPlugin) this, intent, Fidel.FIDEL_LINK_CARD_REQUEST_CODE);
         }
-        //callbackInput.callbackIsReady(callback);
     }
 
     private void setup(JSONArray map) {
@@ -154,7 +141,7 @@ public class FidelPlugin extends CordovaPlugin {
             setupProcessor.process(setupObject);
         }
         catch (JSONException e) {
-            e.printStackTrace();//TODO: Find a way to send a developer-friendly error back to Cordova
+            e.printStackTrace();
         }
     }
 
@@ -165,7 +152,7 @@ public class FidelPlugin extends CordovaPlugin {
             optionsAdapter.process(optionsObject);
         }
         catch (JSONException e) {
-            e.printStackTrace();//TODO: Find a way to send a developer-friendly error back to Cordova
+            e.printStackTrace();
         }
     }
 
