@@ -10,6 +10,7 @@ public final class DataConverterStub<D, C> implements DataConverter<D, C> {
     @Override
     public C getConvertedDataFor(D data) {
         dataReceived = data;
+        System.out.println("In stub getConvertedDataFor, dataReceived is " + dataReceived);
         return convertedDataToReturn;
     }
 }

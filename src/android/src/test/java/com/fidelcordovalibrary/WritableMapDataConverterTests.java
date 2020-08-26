@@ -59,6 +59,7 @@ public class WritableMapDataConverterTests {
         setFieldsFor(linkResult);
 
         JSONObject receivedMap = sut.getConvertedDataFor(linkResult);
+        System.out.println("receivedMap: " + receivedMap);
 
         for (Field field: linkResult.getClass().getDeclaredFields()) {
             try {
@@ -78,7 +79,7 @@ public class WritableMapDataConverterTests {
                     JSONObject mapJson = receivedMap.getJSONObject(field.getName());
                     HashMap mapField = new Gson().fromJson(mapJson.toString(), HashMap.class);
                     JSONObject jsonField = (JSONObject)field.get(linkResult);
-                    System.out.println(jsonField);
+                    System.out.println("Before call assert, map / json" + mapField + " / " + jsonField);
                     assertMapEqualsWithJSONObject(mapField, jsonField);
                 }
                 else if (field.getType() != Parcelable.Creator.class) {

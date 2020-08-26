@@ -61,7 +61,10 @@ public final class AssertHelpers {
                             Integer intValue = ((Double)mapValue).intValue();
                             assertEquals(intValue, jsonValue);
                         } else {
-                            assertEquals(mapValue, jsonValue);
+                            System.out.println("mapValue / jsonValue " + mapValue + " / " + jsonValue);
+                            JSONObject jsonObject = new JSONObject((HashMap)mapValue);
+                            //assertEquals(mapValue, jsonValue);
+                            assertEquals(jsonObject, jsonValue);
                         }
                     }
                 }

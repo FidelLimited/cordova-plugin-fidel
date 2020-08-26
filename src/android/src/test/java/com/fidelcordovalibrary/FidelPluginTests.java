@@ -10,7 +10,6 @@ import android.webkit.WebChromeClient;
 import com.fidel.sdk.Fidel;
 import com.fidel.sdk.LinkResult;
 import com.fidel.sdk.LinkResultErrorCode;
-import com.fidelcordovalibrary.fakes.CallbackSpy;
 import com.fidelcordovalibrary.fakes.DataConverterStub;
 import com.fidelcordovalibrary.fakes.DataProcessorSpy;
 import com.fidelcordovalibrary.fakes.IntentMock;
@@ -45,7 +44,6 @@ import static org.junit.Assert.assertTrue;
 public class FidelPluginTests {
 
     private FidelPlugin sut;
-    private CallbackSpy callbackSpy;
     private DataConverterStub<Object, JSONObject> linkResultConverterStub;
     private Activity activity;
     private IntentMock<LinkResult> intent;
@@ -60,7 +58,6 @@ public class FidelPluginTests {
         linkResultConverterStub = new DataConverterStub<>();
         errorHandlerSpy = new DataProcessorSpy<>();
         sut = new FidelPlugin();
-        callbackSpy = new CallbackSpy();
         final String callbackId = "10";
         final CordovaWebView cordovaWebView = new CordovaWebView() {
             @Override
@@ -241,7 +238,6 @@ public class FidelPluginTests {
     @After
     public final void tearDown() {
         sut = null;
-        callbackSpy = null;
         linkResultConverterStub = null;
         activity = null;
         intent = null;
@@ -278,7 +274,6 @@ public class FidelPluginTests {
     private void onActivityResultWithError() {
         LinkResultErrorCode errorCode = LinkResultErrorCode.USER_CANCELED;
         intent.parcelableExtraToReturn = new LinkResult(errorCode, "Test error message");;
-
         sut.onActivityResult(REQUEST_CODE, 0, intent);
     }
 }
