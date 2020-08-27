@@ -20,7 +20,6 @@
         <framework src="com.github.FidelLimited:android-sdk:1.4.0" />
         <framework src="javax.annotation:javax.annotation-api:1.3.2" />
         <framework src="com.google.code.gson:gson:2.8.5" />
-        <!-- <framework src="androidx.annotation:annotation:1.1.0" /> -->
         <framework src="org.jetbrains:annotations-java5:15.0" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/FidelPlugin.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelSetupAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
@@ -36,8 +35,5 @@
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataOutput.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataProcessor.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ObjectFactory.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/CallbackActivityEventListener.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events/" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/CallbackInput.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events/" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/events/ErrorEventEmitter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/events" />
     </platform>
 </plugin>
