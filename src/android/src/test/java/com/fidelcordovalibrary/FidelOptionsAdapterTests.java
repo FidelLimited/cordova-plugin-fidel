@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.fidelcordovalibrary.helpers.AssertHelpers.assertMapContainsMap;
-import static com.fidelcordovalibrary.helpers.AssertHelpers.assertMapEqualsWithJSONObject;
 import static junit.framework.Assert.fail;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertEquals;
@@ -244,22 +243,19 @@ public class FidelOptionsAdapterTests {
         processWithCountryInt(RANDOM_KEY);
         assertNull(Fidel.country);
     }
-    //TODO: Fix failing test
     @Test
     public void test_IfDoesntHaveCardSchemeKey_DontSetItToTheSDK() {
         map = JSONObjectStub.mapWithNoKey();
-        processWithCardSchemes(Fidel.CardScheme.VISA);
+        sut.process(map);
         assertEquals(EnumSet.allOf(Fidel.CardScheme.class), Fidel.supportedCardSchemes);
-        //assertEquals(Fidel.CardScheme.VISA, Fidel.supportedCardSchemes);
     }
 
     //Setting correct values tests
-    //TODO: Fix failing test
     @Test
     public void test_WhenImageProcessorSendsBitmap_SendItToImageProcessor() {
         String keyToTestFor = FidelOptionsAdapter.BANNER_IMAGE_KEY;
-        map = JSONObjectStub.mapWithExistingKey(keyToTestFor);
-        processWithMap(keyToTestFor, map);
+        map = JSONObjectStub.mapWithKeyAndValue(keyToTestFor, true);
+        sut.process(map);
         try {
             assertEquals(map.get(keyToTestFor),
                     imageAdapterSpy.dataToProcess);
@@ -392,17 +388,13 @@ public class FidelOptionsAdapterTests {
     }
 
     private JSONObject TEST_META_DATA(String key) {
-        //JSONObjectStub map = new JSONObjectStub();
-        //map.hashMapToReturn = TEST_HASH_MAP();
         try {
             map.put(key, TEST_HASH_MAP());
             return map;
-            //return TEST_HASH_MAP();
         }
         catch(Exception e) {
             fail("Test failed with error " + e.getLocalizedMessage());
             return map;
-            //return TEST_HASH_MAP();
         }
     }
 
@@ -417,11 +409,6 @@ public class FidelOptionsAdapterTests {
         }
 
     }
-
-//    private void processWithString(String string, String key) {
-//        map.stringForKeyToReturn.put(key, string);
-//        sut.process(map);
-//    }
 
     private void processWithString(String key, String value) {
         try {
@@ -462,7 +449,6 @@ public class FidelOptionsAdapterTests {
         ja.put(cardSchemes);
         try {
             map.put(FidelOptionsAdapter.CARD_SCHEMES_KEY, ja);
-            //map.readableArrayToReturn = JavaOnlyArray.of((Object[]) cardSchemes);
             sut.process(map);
         }
         catch (JSONException e) {
@@ -471,10 +457,8 @@ public class FidelOptionsAdapterTests {
     }
 
     private void assertEqualsString(String key, String valueToCheckWith) {
-        System.out.println("In assertEqualsString, map is " + map);
         sut.process(map);
         try {
-            //map.put(key, valueToCheckWith);
             assertEquals(map.get(key), valueToCheckWith);
         }
         catch (JSONException e) {
@@ -494,13 +478,10 @@ public class FidelOptionsAdapterTests {
             fail("Test failed with error " + e.getLocalizedMessage());
         }
     }
-//
+
     private void assertToCheckForKey(String keyToCheckFor) {
         JSONObject map = JSONObjectStub.mapWithExistingKey(keyToCheckFor);
         sut.process(map);
         assertTrue(map.has(keyToCheckFor));
-//        assertThat(map.keyNamesCheckedFor, hasItem(keyToCheckFor));
-//        assertThat(map.keyNamesVerifiedNullFor, hasItem(keyToCheckFor));
-//        assertThat(map.keyNamesAskedFor, hasItem(keyToCheckFor));
     }
 }

@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +59,6 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
 
     @Override
     public void process(JSONObject data) {
-        System.out.println("In process, data is " + data);
         if (valueIsValidFor(data, BANNER_IMAGE_KEY)) {
             try {
                 imageAdapter.process(data.getBoolean(BANNER_IMAGE_KEY));
@@ -152,6 +152,16 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
 
     private boolean valueIsValidFor(JSONObject map, String key) {
         try {
+            Object value = map.get(key);
+            if (value.getClass() == JSONObject.class) {
+                JSONObject result = (JSONObject) value;
+                Iterator<String> jsonKeyIterator = result.keys();
+                while (jsonKeyIterator.hasNext()) {
+                    String nestedKey = jsonKeyIterator.next();
+                    Object nestedValue = result.get(nestedKey);
+                    return (nestedValue != null && !nestedValue.equals(""));
+                }
+            }
             return (map.has(key) && !map.isNull(key) && !map.get(key).equals(""));
         }
         catch (JSONException e) {

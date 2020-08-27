@@ -1,38 +1,35 @@
 package com.fidelcordovalibrary;
 
 import android.app.Activity;
-import android.util.Log;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.fidel.sdk.Fidel;
 import com.fidel.sdk.LinkResult;
 import com.fidel.sdk.LinkResultError;
 import com.fidel.sdk.view.EnterCardDetailsActivity;
-import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
-import com.fidelcordovalibrary.adapters.abstraction.ConstantsProvider;
-import com.fidelcordovalibrary.adapters.abstraction.DataConverter;
-import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
+import com.fidelcordovalibrary.adapters.FidelCardSchemesAdapter;
+import com.fidelcordovalibrary.adapters.FidelCountryAdapter;
 import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.adapters.FidelSetupAdapter;
 import com.fidelcordovalibrary.adapters.ImageFromReadableMapAdapter;
-import com.fidelcordovalibrary.adapters.FidelCountryAdapter;
-import com.fidelcordovalibrary.adapters.FidelCardSchemesAdapter;
 import com.fidelcordovalibrary.adapters.WritableMapDataConverter;
+import com.fidelcordovalibrary.adapters.abstraction.ConstantsProvider;
+import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
+import com.fidelcordovalibrary.adapters.abstraction.DataConverter;
+import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
-
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-import org.jetbrains.annotations.Nullable;
 
 public class FidelPlugin extends CordovaPlugin {
 
@@ -52,7 +49,6 @@ public class FidelPlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
-        Log.i("i","In execute, action is: " + action);
         Context context = this.cordova.getActivity().getApplicationContext();
         initialize(callbackContext, context);
         switch (action) {
@@ -96,26 +92,13 @@ public class FidelPlugin extends CordovaPlugin {
     }
 
     @Override
-    public Bundle onSaveInstanceState() {
-        Log.i("i", "In onSaveInstanceState, activity killed");
-        return null;
-    }
-
-    @Override
-    public void onRestoreStateForActivityResult(Bundle state, CallbackContext callbackContext) {
-        Log.i("i", "In onRestoreStateForActivityResult");
-    }
-
-    @Override
     public void onActivityResult(int requestCode,
                                  int resultCode,
                                  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.i("i","In onActivityResult of main class, requestCode is: " + requestCode);
          if (requestCode == Fidel.FIDEL_LINK_CARD_REQUEST_CODE) {
              LinkResult result = data.getParcelableExtra(Fidel.FIDEL_LINK_CARD_RESULT_CARD);
              LinkResultError error = result.getError();
-             Log.i("i","In onActivityResult, result / error is: " + result + " / " + error);
              if (error == null) {
                  JSONObject convertedLinkResult = linkResultConverter.getConvertedDataFor(result);
                  callback.success(convertedLinkResult);
@@ -148,7 +131,6 @@ public class FidelPlugin extends CordovaPlugin {
     private void setOptions(JSONArray map) {
         try {
             JSONObject optionsObject = map.getJSONObject(0);
-            //optionsProcessor.process(optionsObject);
             optionsAdapter.process(optionsObject);
         }
         catch (JSONException e) {

@@ -6,7 +6,6 @@ import com.fidel.sdk.LinkResult;
 import com.fidel.sdk.LinkResultErrorCode;
 import com.fidelcordovalibrary.adapters.WritableMapDataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,9 +16,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
 
-import static com.fidelcordovalibrary.helpers.AssertHelpers.assertMapEqualsWithJSONObject;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
@@ -59,7 +56,6 @@ public class WritableMapDataConverterTests {
         setFieldsFor(linkResult);
 
         JSONObject receivedMap = sut.getConvertedDataFor(linkResult);
-        System.out.println("receivedMap: " + receivedMap);
 
         for (Field field: linkResult.getClass().getDeclaredFields()) {
             try {
@@ -77,10 +73,10 @@ public class WritableMapDataConverterTests {
                 }
                 else if (field.getType() == JSONObject.class) {
                     JSONObject mapJson = receivedMap.getJSONObject(field.getName());
-                    HashMap mapField = new Gson().fromJson(mapJson.toString(), HashMap.class);
                     JSONObject jsonField = (JSONObject)field.get(linkResult);
-                    System.out.println("Before call assert, map / json" + mapField + " / " + jsonField);
-                    assertMapEqualsWithJSONObject(mapField, jsonField);
+                    //TODO: Find a way to remove whitespace comparison from the assert
+                    assertEquals(mapJson, jsonField);
+
                 }
                 else if (field.getType() != Parcelable.Creator.class) {
                     fail("Some of the link result properties are not converted");

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 
-
 import com.fidel.sdk.Fidel;
 import com.fidel.sdk.LinkResult;
 import com.fidel.sdk.LinkResultErrorCode;

@@ -2,8 +2,6 @@ package com.fidelcordovalibrary.adapters;
 
 import com.fidel.sdk.Fidel;
 import com.fidelcordovalibrary.adapters.abstraction.CardSchemesAdapter;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,9 +9,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 public final class FidelCardSchemesAdapter implements CardSchemesAdapter {

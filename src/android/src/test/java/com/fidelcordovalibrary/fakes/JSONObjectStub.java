@@ -48,4 +48,16 @@ public class JSONObjectStub {
             return object;
         }
     }
+
+    public static JSONObject mapWithKeyAndValue(String existingKey, Object value) {
+        JSONObject object = new JSONObject();
+        try {
+            object.put(existingKey, value);
+            return object;
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+            return object;
+        }
+    }
 }
