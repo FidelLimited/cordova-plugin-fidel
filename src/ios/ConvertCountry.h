@@ -27,9 +27,6 @@
 
 @implementation ConvertCountry (Country)
 
-RCT_ENUM_CONVERTER(FLCountry, (FLCountryValues),
-                   FLCountryNoDefault, integerValue);
-
 -(FLCountry)adaptedInt:(int)countryId {
     
     
