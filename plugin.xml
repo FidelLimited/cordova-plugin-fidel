@@ -36,4 +36,20 @@
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataProcessor.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ObjectFactory.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
     </platform>
+        <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FidelPlugin">
+                <param name="ios-package" value="FidelPlugin"/>
+            </feature>
+        </config-file>
+        <header-file src="src/ios/FidelPlugin.h"/>
+        <source-file src="src/ios/FidelPlugin.m"/>
+        <header-file src="src/ios/RCTConvert+Country.h"/>
+        <header-file src="src/ios/FLRNSetupAdapter.h"/>
+        <header-file src="src/ios/FLRNOptionsAdapter.h"/>
+        <header-file src="src/ios/FLRNCountryFromJSAdapter.h"/>
+        <header-file src="src/ios/FLRNImageFromRNAdapter.h"/>
+        <header-file src="src/ios/FLRNCardSchemesFromJSAdapter.h"/>
+        <header-file src="src/ios/FLRNRuntimeObjectToDictionaryAdapter.h"/>
+    </platform>
 </plugin>
