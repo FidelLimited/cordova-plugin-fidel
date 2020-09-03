@@ -44,7 +44,6 @@
         </config-file>
         <header-file src="src/ios/FidelPlugin.h"/>
         <source-file src="src/ios/FidelPlugin.m"/>
-        <header-file src="src/ios/RCTConvert+Country.h"/>
         <header-file src="src/ios/FLRNSetupAdapter.h"/>
         <header-file src="src/ios/FLRNOptionsAdapter.h"/>
         <header-file src="src/ios/FLRNCountryFromJSAdapter.h"/>
