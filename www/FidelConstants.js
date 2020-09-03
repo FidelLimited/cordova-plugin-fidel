@@ -10,8 +10,8 @@ module.exports = {
      */
     Country: {
         UNITED_KINGDOM: 0,
-        UNITED_STATES: 1,
-        IRELAND: 2,
+        IRELAND: 1,
+        UNITED_STATES: 2,
         SWEDEN: 3,
         JAPAN: 4,
         CANADA: 5,
