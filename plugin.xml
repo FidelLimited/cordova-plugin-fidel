@@ -36,7 +36,7 @@
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataProcessor.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ObjectFactory.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
     </platform>
-        <platform name="ios">
+    <platform name="ios">
         <config-file target="config.xml" parent="/*">
             <feature name="FidelPlugin">
                 <param name="ios-package" value="FidelPlugin"/>
@@ -47,8 +47,22 @@
         <header-file src="src/ios/FLRNSetupAdapter.h"/>
         <header-file src="src/ios/FLRNOptionsAdapter.h"/>
         <header-file src="src/ios/FLRNCountryFromJSAdapter.h"/>
+        <header-file src="src/ios/FLRNCountryAdapter.h"/>
+        <header-file src="src/ios/FLRNConstantsProvider.h"/>
         <header-file src="src/ios/FLRNImageFromRNAdapter.h"/>
+        <header-file src="src/ios/FLRNImageAdapter.h"/>
         <header-file src="src/ios/FLRNCardSchemesFromJSAdapter.h"/>
+        <header-file src="src/ios/FLRNCardSchemesAdapter.h"/>
         <header-file src="src/ios/FLRNRuntimeObjectToDictionaryAdapter.h"/>
+        <header-file src="src/ios/FLRNObjectToDictionaryAdapter.h"/>
+            <podspec>
+      <config>
+        <source url="https://github.com/brightcove/BrightcoveSpecs.git" />
+        <source url="https://github.com/CocoaPods/Specs.git"/>
+      </config>
+      <pods use-frameworks="true">
+        <pod name="Fidel" spec="~> 1.8.1" />
+      </pods>
+    </podspec>
     </platform>
 </plugin>

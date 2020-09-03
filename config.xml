@@ -22,5 +22,8 @@
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <feature name="FidelPlugin">
+                <param name="ios-package" value="FidelPlugin"/>
+        </feature>
     </platform>
 </widget>
