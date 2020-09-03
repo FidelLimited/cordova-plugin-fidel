@@ -12,13 +12,6 @@ public final class CountryAdapterStub implements CountryAdapter {
     public Country countryToReturn;
     public int countryIntegerReceived;
 
-    @Nonnull
-    @Override
-    public Map<String, Object> getConstants() {
-        ConstantsProviderStub constantsProviderStub = new ConstantsProviderStub("testKey", 2);
-        return constantsProviderStub.getConstants();
-    }
-
     @Override
     public Country countryWithInteger(int integer) {
         countryIntegerReceived = integer;

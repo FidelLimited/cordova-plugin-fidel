@@ -21,9 +21,4 @@ public final class CardSchemeAdapterStub implements CardSchemesAdapter {
         return fakeAdaptedCardSchemesToReturn;
     }
 
-    @Nonnull
-    @Override
-    public Map<String, Object> getConstants() {
-        return new ConstantsProviderStub("testKeyCardSchemeAdapter", 234).getConstants();
-    }
 }

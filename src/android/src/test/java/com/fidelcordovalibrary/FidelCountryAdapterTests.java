@@ -33,26 +33,6 @@ public class FidelCountryAdapterTests {
     }
 
     @Test
-    public void test_ToExposeCountryConstants() {
-        Map<String, Object> exposedConstants = sut.getConstants();
-        assertThat(exposedConstants.keySet(), hasItem(COUNTRIES_KEY));
-        Map<String, Integer> countriesMap = (Map<String, Integer>)exposedConstants.get(COUNTRIES_KEY);
-        assertNotNull(countriesMap);
-        for (Country country : Country.values()) {
-            String countryKey = sut.keyFor(country);
-            assertCorrectCountryValueFor(countryKey, country, countriesMap);
-        }
-    }
-
-
-    @Test
-    public void test_WhenAskedForKeyForCountry_ItProvidesIt() {
-        for (Country country : Country.values()) {
-            assertNotNull(sut.keyFor(country));
-        }
-    }
-
-    @Test
     public void test_WhenCountryOrdinalNumberIsTooHigh_ReturnNullCountry() {
         assertNull(sut.countryWithInteger(1239));
     }

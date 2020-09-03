@@ -14,7 +14,6 @@ import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.adapters.FidelSetupAdapter;
 import com.fidelcordovalibrary.adapters.ImageFromReadableMapAdapter;
 import com.fidelcordovalibrary.adapters.WritableMapDataConverter;
-import com.fidelcordovalibrary.adapters.abstraction.ConstantsProvider;
 import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.DataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
@@ -22,20 +21,14 @@ import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class FidelPlugin extends CordovaPlugin {
 
     private DataProcessor<JSONObject> setupProcessor;
     private FidelOptionsAdapter optionsAdapter;
-    private List<ConstantsProvider> constantsProviderList;
     private DataConverter<Object, JSONObject> linkResultConverter;
     private CallbackContext callback;
 
@@ -79,9 +72,6 @@ public class FidelPlugin extends CordovaPlugin {
                 new FidelCardSchemesAdapter();
         optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
         imageAdapter.bitmapOutput = optionsAdapter;
-        constantsProviderList =
-                new ArrayList<>();
-        constantsProviderList.add(optionsAdapter);
         linkResultConverter = new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
             @Override
             public JSONObject create() {
@@ -138,8 +128,4 @@ public class FidelPlugin extends CordovaPlugin {
         }
     }
 
-    @Nullable
-    public Map<String, Object> getConstants() {
-    return constantsProviderList.get(0).getConstants();
-    }
 }

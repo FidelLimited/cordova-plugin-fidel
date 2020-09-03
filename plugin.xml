@@ -29,7 +29,6 @@
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelOptionsAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/WritableMapDataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ConstantsProvider.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataOutput.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
