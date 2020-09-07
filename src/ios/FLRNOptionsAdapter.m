@@ -17,7 +17,7 @@
 #import "FLRNCountryAdapter.h"
 #import "FLRNImageAdapter.h"
 #import "FLRNCardSchemesAdapter.h"
-#import "RCTConvert+Options.h"
+
 
 @interface FLRNOptionsAdapter()
 
@@ -42,15 +42,18 @@
 }
 
 NSString *const kCountryKey = @"Country";
-NSString *const kCardSchemeKey = @"CardScheme";
 NSString *const kOptionKey = @"Option";
--(NSDictionary *)constantsToExport {
-    return @{
-             kCountryKey: self.countryAdapter.constantsToExport,
-             kCardSchemeKey: self.cardSchemesAdapter.constantsToExport,
-             kOptionKey: FLSDKOptionValues
-             };
-}
+NSString *const kBannerImageOptionKey = @"showBannerImage";
+NSString *const kCountryOptionKey = @"country";
+NSString *const kAutoScanOptionKey = @"autoScan";
+NSString *const kCompanyNameOptionKey = @"companyName";
+NSString *const kMetaDataOptionKey = @"metaData";
+NSString *const kCardSchemesDataOptionKey = @"supportedCardSchemes";
+NSString *const kProgramNameOptionKey = @"programName";
+NSString *const kDeleteInstructionsOptionKey = @"deleteInstructions";
+NSString *const kPrivacyURLOptionKey = @"privacyUrl";
+NSString *const kTermsConditionsURLOptionKey = @"termsConditionsUrl";
+
 
 - (void)setOptions:(NSDictionary *)options {
     NSArray *allOptionKeys = options.allKeys;

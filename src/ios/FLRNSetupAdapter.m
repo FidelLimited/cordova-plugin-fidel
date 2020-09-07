@@ -7,7 +7,6 @@
 //
 
 #import "FLRNSetupAdapter.h"
-#import "FLRNSDKSetupOptions.h"
 //#import "Fidel-Swift.h"
 #if __has_include(<Fidel/Fidel-Swift.h>)
 #import <Fidel/Fidel-Swift.h>
@@ -22,14 +21,6 @@
 NSString *const kApiKeyDictionaryKey = @"apiKey";
 NSString *const kProgramIDKey = @"programId";
 NSString *const kSetupOptionKey = @"SetupOption";
-
-- (NSDictionary *)constantsToExport {
-    return @{kSetupOptionKey: @{
-                     kApiKeyDictionaryKey: @(FLSDKSetupOptionApiKey),
-                     kProgramIDKey: @(FLSDKSetupOptionProgramID)
-                     }
-             };
-}
 
 - (void)setupWith:(NSDictionary *)setupInfo {
     FLFidel.apiKey = [self getStringValueFor:kApiKeyDictionaryKey fromDictionary:setupInfo];
