@@ -26,8 +26,7 @@
 @implementation FidelPlugin
 
 
--(instancetype)init {
-    self = [super init];
+- (void)pluginInitialize {
     if (self) {
         id<FLRNCountryAdapter> countryAdapter;
         countryAdapter = [[FLRNCountryFromJSAdapter alloc] init];
@@ -39,7 +38,6 @@
         _setupAdapter = [[FLRNSetupAdapter alloc] init];
         _objectAdapter = [[FLRNRuntimeObjectToDictionaryAdapter alloc] init];
     }
-    return self;
 }
 
 - (void)setup:(CDVInvokedUrlCommand *)command {
