@@ -1,7 +1,6 @@
 package com.fidelcordovalibrary;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
 import com.fidel.sdk.Fidel;
@@ -20,7 +19,9 @@ import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,31 +42,11 @@ public class FidelPlugin extends CordovaPlugin {
     private static final String SET_OPTIONS = "setOptions";
 
     @Override
-    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
-        Context context = this.cordova.getActivity().getApplicationContext();
-        initialize(callbackContext, context);
-        switch (action) {
-            case OPEN_FORM:
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    openForm(callbackContext);
-                }
-            });
-            return true;                
-            case SETUP:
-                setup(args);
-                return true;
-            case SET_OPTIONS:
-                setOptions(args);
-                return true;
-        }
-        return false;
-    }
-
-    public void initialize(CallbackContext callbackContext, Context context) {
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
         setupProcessor = new FidelSetupAdapter();
         ImageFromReadableMapAdapter imageAdapter =
-                new ImageFromReadableMapAdapter(context);
+                new ImageFromReadableMapAdapter(cordova.getActivity().getApplicationContext());
         CountryAdapter countryAdapter =
                 new FidelCountryAdapter();
         FidelCardSchemesAdapter cardSchemesAdapter =
@@ -78,7 +59,33 @@ public class FidelPlugin extends CordovaPlugin {
                 return new JSONObject();
             }
         });
+
+    }
+
+    public void setCallbackContext(CallbackContext callbackContext) {
         callback = callbackContext;
+    }
+
+
+    @Override
+    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
+        setCallbackContext(callbackContext);
+        switch (action) {
+            case OPEN_FORM:
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    openForm();
+                }
+            });
+            return true;                
+            case SETUP:
+                setup(args);
+                return true;
+            case SET_OPTIONS:
+                setOptions(args);
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -100,7 +107,7 @@ public class FidelPlugin extends CordovaPlugin {
          }
     }
 
-    private void openForm(CallbackContext callback) {
+    private void openForm() {
         final Activity activity = cordova.getActivity();
         if (activity != null) {
             Intent intent = new Intent(activity, EnterCardDetailsActivity.class);
