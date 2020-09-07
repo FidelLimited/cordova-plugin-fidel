@@ -7,7 +7,6 @@
 //
 
 #import "FLRNCardSchemesFromJSAdapter.h"
-#import "RCTConvert+CardScheme.h"
 #if __has_include(<Fidel/Fidel-Swift.h>)
 #import <Fidel/Fidel-Swift.h>
 #elif __has_include("Fidel-Swift.h")
@@ -24,16 +23,11 @@
         NSArray *arrayToAdapt = (NSArray *)objectToAdapt;
         setToReturn = [NSMutableSet set];
         for (id objectToAdapt in arrayToAdapt) {
-            FLCardScheme cardScheme = [RCTConvert FLCardScheme:objectToAdapt];
+            FLCardScheme cardScheme =FLCardSchemeVisa;// [RCTConvert FLCardScheme:objectToAdapt];
             [setToReturn addObject:@(cardScheme)];
         }
     }
     return setToReturn;
 }
-
--(NSDictionary *)constantsToExport {
-    return FLCardSchemeValues;
-}
-
 
 @end
