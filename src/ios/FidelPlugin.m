@@ -12,7 +12,7 @@
 #import "FLOptionsAdapter.h"
 #import "FLCountryFromJSAdapter.h"
 #import "ImageAdapter.h"
-#import "FLRNCardSchemesFromJSAdapter.h"
+#import "FLCardSchemesFromJSAdapter.h"
 #import "FLRNRuntimeObjectToDictionaryAdapter.h"
 
 @interface FidelPlugin()
@@ -31,7 +31,7 @@
         id<FLRNCountryAdapter> countryAdapter;
         countryAdapter = [[FLCountryFromJSAdapter alloc] init];
         id<FLRNImageAdapter> imageAdapter = [[ImageAdapter alloc] init];
-        id<FLRNCardSchemesAdapter> cardSchemesAdapter = [[FLRNCardSchemesFromJSAdapter alloc] init];
+        id<FLCardSchemesAdapter> cardSchemesAdapter = [[FLCardSchemesFromJSAdapter alloc] init];
         _adapter = [[FLOptionsAdapter alloc] initWithCountryAdapter:countryAdapter
                                                          imageAdapter:imageAdapter
                                                    cardSchemesAdapter:cardSchemesAdapter];

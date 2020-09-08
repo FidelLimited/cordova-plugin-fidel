@@ -1,4 +1,4 @@
-#import "FLRNCardSchemesFromJSAdapter.h"
+#import "FLCardSchemesFromJSAdapter.h"
 #if __has_include(<Fidel/Fidel-Swift.h>)
 #import <Fidel/Fidel-Swift.h>
 #elif __has_include("Fidel-Swift.h")
@@ -7,7 +7,7 @@
 #import "Fidel/Fidel-Swift.h" // Required when used as a Pod in a Swift project
 #endif
 
-@implementation FLRNCardSchemesFromJSAdapter
+@implementation FLCardSchemesFromJSAdapter
 
 -(NSSet<NSNumber *> *)cardSchemesWithRawObject:(id)objectToAdapt {
     NSMutableSet<NSNumber *> *setToReturn;

@@ -8,14 +8,14 @@
 #endif
 #import "FLRNCountryAdapter.h"
 #import "FLImageAdapter.h"
-#import "FLRNCardSchemesAdapter.h"
+#import "FLCardSchemesAdapter.h"
 
 
 @interface FLOptionsAdapter()
 
 @property (nonatomic, strong) id<FLRNCountryAdapter> countryAdapter;
 @property (nonatomic, strong) id<FLImageAdapter> imageAdapter;
-@property (nonatomic, strong) id<FLRNCardSchemesAdapter> cardSchemesAdapter;
+@property (nonatomic, strong) id<FLCardSchemesAdapter> cardSchemesAdapter;
 
 @end
 
@@ -23,7 +23,7 @@
 
 - (instancetype)initWithCountryAdapter:(id<FLRNCountryAdapter>)countryAdapter
                           imageAdapter:(id<FLImageAdapter>)imageAdapter
-                    cardSchemesAdapter:(id<FLRNCardSchemesAdapter>)cardSchemesAdapter {
+                    cardSchemesAdapter:(id<FLCardSchemesAdapter>)cardSchemesAdapter {
     self = [super init];
     if (self) {
         _countryAdapter = countryAdapter;

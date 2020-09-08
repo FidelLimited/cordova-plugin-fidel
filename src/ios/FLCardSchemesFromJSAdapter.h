@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLRNCardSchemesAdapter.h"
+#import "FLCardSchemesAdapter.h"
 
-@interface FLRNCardSchemesFromJSAdapter : NSObject <FLRNCardSchemesAdapter>
+@interface FLCardSchemesFromJSAdapter : NSObject <FLCardSchemesAdapter>
 
 @end
