@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FLRNCountryAdapter.h"
+#import "FLCountryAdapter.h"
 
-@interface FLCountryFromJSAdapter : NSObject <FLRNCountryAdapter>
+@interface FLCountryFromJSAdapter : NSObject <FLCountryAdapter>
 
 @end

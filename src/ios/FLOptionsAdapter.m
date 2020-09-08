@@ -6,14 +6,14 @@
 #else
 #import "Fidel/Fidel-Swift.h" // Required when used as a Pod in a Swift project
 #endif
-#import "FLRNCountryAdapter.h"
+#import "FLCountryAdapter.h"
 #import "FLImageAdapter.h"
 #import "FLCardSchemesAdapter.h"
 
 
 @interface FLOptionsAdapter()
 
-@property (nonatomic, strong) id<FLRNCountryAdapter> countryAdapter;
+@property (nonatomic, strong) id<FLCountryAdapter> countryAdapter;
 @property (nonatomic, strong) id<FLImageAdapter> imageAdapter;
 @property (nonatomic, strong) id<FLCardSchemesAdapter> cardSchemesAdapter;
 
@@ -21,7 +21,7 @@
 
 @implementation FLOptionsAdapter
 
-- (instancetype)initWithCountryAdapter:(id<FLRNCountryAdapter>)countryAdapter
+- (instancetype)initWithCountryAdapter:(id<FLCountryAdapter>)countryAdapter
                           imageAdapter:(id<FLImageAdapter>)imageAdapter
                     cardSchemesAdapter:(id<FLCardSchemesAdapter>)cardSchemesAdapter {
     self = [super init];
