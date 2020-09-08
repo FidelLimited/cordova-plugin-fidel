@@ -23,13 +23,12 @@
         <framework src="org.jetbrains:annotations-java5:15.0" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/FidelPlugin.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelSetupAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/ImageFromReadableMapAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/ImageAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelOptionsAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/WritableMapDataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/JSONObjectDataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ConstantsProvider.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataOutput.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
@@ -45,15 +44,21 @@
         <header-file src="src/ios/FidelPlugin.h"/>
         <source-file src="src/ios/FidelPlugin.m"/>
         <header-file src="src/ios/FLRNSetupAdapter.h"/>
+        <source-file src="src/ios/FLRNSetupAdapter.m"/>
         <header-file src="src/ios/FLRNOptionsAdapter.h"/>
+        <source-file src="src/ios/FLRNOptionsAdapter.m"/>
         <header-file src="src/ios/FLRNCountryFromJSAdapter.h"/>
+        <source-file src="src/ios/FLRNCountryFromJSAdapter.m"/>
         <header-file src="src/ios/FLRNCountryAdapter.h"/>
         <header-file src="src/ios/FLRNConstantsProvider.h"/>
         <header-file src="src/ios/FLRNImageFromRNAdapter.h"/>
+        <source-file src="src/ios/FLRNImageFromRNAdapter.m"/>
         <header-file src="src/ios/FLRNImageAdapter.h"/>
         <header-file src="src/ios/FLRNCardSchemesFromJSAdapter.h"/>
+        <source-file src="src/ios/FLRNCardSchemesFromJSAdapter.m"/>
         <header-file src="src/ios/FLRNCardSchemesAdapter.h"/>
         <header-file src="src/ios/FLRNRuntimeObjectToDictionaryAdapter.h"/>
+        <source-file src="src/ios/FLRNRuntimeObjectToDictionaryAdapter.m"/>
         <header-file src="src/ios/FLRNObjectToDictionaryAdapter.h"/>
             <podspec>
       <config>
