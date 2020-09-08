@@ -1,11 +1,3 @@
-//
-//  FLRNCardSchemesFromJSAdapter.m
-//  Fidel
-//
-//  Created by Corneliu on 12/05/2019.
-//  Copyright © 2019 Facebook. All rights reserved.
-//
-
 #import "FLRNCardSchemesFromJSAdapter.h"
 #if __has_include(<Fidel/Fidel-Swift.h>)
 #import <Fidel/Fidel-Swift.h>
@@ -23,8 +15,20 @@
         NSArray *arrayToAdapt = (NSArray *)objectToAdapt;
         setToReturn = [NSMutableSet set];
         for (id objectToAdapt in arrayToAdapt) {
-            FLCardScheme cardScheme =FLCardSchemeVisa;// [RCTConvert FLCardScheme:objectToAdapt];
-            [setToReturn addObject:@(cardScheme)];
+            NSNumber *rawValue = objectToAdapt;
+            FLCardScheme convertedCardScheme = (FLCardScheme) rawValue.intValue;
+            if (convertedCardScheme == 0) {
+                FLCardScheme cardScheme = FLCardSchemeVisa;
+                [setToReturn addObject:@(cardScheme)];
+            }
+            else if (convertedCardScheme == 1) {
+                FLCardScheme cardScheme = FLCardSchemeMastercard;
+                [setToReturn addObject:@(cardScheme)];
+            }
+            else if (convertedCardScheme == 2) {
+                FLCardScheme cardScheme = FLCardSchemeAmericanExpress;
+                [setToReturn addObject:@(cardScheme)];
+            }
         }
     }
     return setToReturn;
