@@ -1,7 +1,7 @@
-#import "FLRNImageFromRNAdapter.h"
+#import "ImageAdapter.h"
 
 
-@implementation FLRNImageFromRNAdapter
+@implementation ImageAdapter
 
 -(UIImage *)processBannerImage {
     UIImage *bannerImage = [UIImage imageNamed:@"banner.png"];

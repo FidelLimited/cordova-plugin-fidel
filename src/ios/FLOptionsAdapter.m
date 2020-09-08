@@ -1,12 +1,4 @@
-//
-//  FLRNOptionsAdapter.m
-//  Fidel
-//
-//  Created by Corneliu on 24/03/2019.
-//  Copyright © 2019 Facebook. All rights reserved.
-//
-
-#import "FLRNOptionsAdapter.h"
+#import "FLOptionsAdapter.h"
 #if __has_include(<Fidel/Fidel-Swift.h>)
 #import <Fidel/Fidel-Swift.h>
 #elif __has_include("Fidel-Swift.h")
@@ -15,22 +7,22 @@
 #import "Fidel/Fidel-Swift.h" // Required when used as a Pod in a Swift project
 #endif
 #import "FLRNCountryAdapter.h"
-#import "FLRNImageAdapter.h"
+#import "FLImageAdapter.h"
 #import "FLRNCardSchemesAdapter.h"
 
 
-@interface FLRNOptionsAdapter()
+@interface FLOptionsAdapter()
 
 @property (nonatomic, strong) id<FLRNCountryAdapter> countryAdapter;
-@property (nonatomic, strong) id<FLRNImageAdapter> imageAdapter;
+@property (nonatomic, strong) id<FLImageAdapter> imageAdapter;
 @property (nonatomic, strong) id<FLRNCardSchemesAdapter> cardSchemesAdapter;
 
 @end
 
-@implementation FLRNOptionsAdapter
+@implementation FLOptionsAdapter
 
 - (instancetype)initWithCountryAdapter:(id<FLRNCountryAdapter>)countryAdapter
-                          imageAdapter:(id<FLRNImageAdapter>)imageAdapter
+                          imageAdapter:(id<FLImageAdapter>)imageAdapter
                     cardSchemesAdapter:(id<FLRNCardSchemesAdapter>)cardSchemesAdapter {
     self = [super init];
     if (self) {

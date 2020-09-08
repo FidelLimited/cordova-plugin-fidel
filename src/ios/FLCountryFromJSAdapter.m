@@ -1,7 +1,7 @@
-#import "FLRNCountryFromJSAdapter.h"
+#import "FLCountryFromJSAdapter.h"
 
 
-@implementation FLRNCountryFromJSAdapter
+@implementation FLCountryFromJSAdapter
 
 -(FLCountry)adaptedCountry:(id)rawCountry {
     NSNumber *rawValue = rawCountry;

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "FLRNCountryAdapter.h"
 
-@interface FLRNCountryFromJSAdapter : NSObject <FLRNCountryAdapter>
+@interface FLCountryFromJSAdapter : NSObject <FLRNCountryAdapter>
 
 @end

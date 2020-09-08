@@ -1,5 +1,5 @@
 //
-//  FLRNImageAdapter.h
+//  FLRNImageFromRNAdapter.h
 //  Fidel
 //
 //  Created by Corneliu on 24/03/2019.
@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "FLImageAdapter.h"
 
-@protocol FLRNImageAdapter <NSObject>
-
--(UIImage *)processBannerImage;
+@interface ImageAdapter : NSObject <FLImageAdapter>
 
 @end

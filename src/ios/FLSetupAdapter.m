@@ -1,12 +1,4 @@
-//
-//  FLRNSetupAdapter.m
-//  Fidel
-//
-//  Created by Corneliu on 22/04/2019.
-//  Copyright © 2019 Facebook. All rights reserved.
-//
-
-#import "FLRNSetupAdapter.h"
+#import "FLSetupAdapter.h"
 //#import "Fidel-Swift.h"
 #if __has_include(<Fidel/Fidel-Swift.h>)
 #import <Fidel/Fidel-Swift.h>
@@ -16,7 +8,7 @@
 #import "Fidel/Fidel-Swift.h" // Required when used as a Pod in a Swift project
 #endif
 
-@implementation FLRNSetupAdapter
+@implementation FLSetupAdapter
 
 NSString *const kApiKeyDictionaryKey = @"apiKey";
 NSString *const kProgramIDKey = @"programId";

@@ -8,17 +8,17 @@
 #else
 #import "Fidel/Fidel-Swift.h" // Required when used as a Pod in a Swift project
 #endif
-#import "FLRNSetupAdapter.h"
-#import "FLRNOptionsAdapter.h"
-#import "FLRNCountryFromJSAdapter.h"
-#import "FLRNImageFromRNAdapter.h"
+#import "FLSetupAdapter.h"
+#import "FLOptionsAdapter.h"
+#import "FLCountryFromJSAdapter.h"
+#import "ImageAdapter.h"
 #import "FLRNCardSchemesFromJSAdapter.h"
 #import "FLRNRuntimeObjectToDictionaryAdapter.h"
 
 @interface FidelPlugin()
 
-@property (nonatomic, strong) FLRNOptionsAdapter *adapter;
-@property (nonatomic, strong) FLRNSetupAdapter *setupAdapter;
+@property (nonatomic, strong) FLOptionsAdapter *adapter;
+@property (nonatomic, strong) FLSetupAdapter *setupAdapter;
 @property (nonatomic, strong) id<FLRNObjectToDictionaryAdapter> objectAdapter;
 
 @end
@@ -29,13 +29,13 @@
 - (void)pluginInitialize {
     if (self) {
         id<FLRNCountryAdapter> countryAdapter;
-        countryAdapter = [[FLRNCountryFromJSAdapter alloc] init];
-        id<FLRNImageAdapter> imageAdapter = [[FLRNImageFromRNAdapter alloc] init];
+        countryAdapter = [[FLCountryFromJSAdapter alloc] init];
+        id<FLRNImageAdapter> imageAdapter = [[ImageAdapter alloc] init];
         id<FLRNCardSchemesAdapter> cardSchemesAdapter = [[FLRNCardSchemesFromJSAdapter alloc] init];
-        _adapter = [[FLRNOptionsAdapter alloc] initWithCountryAdapter:countryAdapter
+        _adapter = [[FLOptionsAdapter alloc] initWithCountryAdapter:countryAdapter
                                                          imageAdapter:imageAdapter
                                                    cardSchemesAdapter:cardSchemesAdapter];
-        _setupAdapter = [[FLRNSetupAdapter alloc] init];
+        _setupAdapter = [[FLSetupAdapter alloc] init];
         _objectAdapter = [[FLRNRuntimeObjectToDictionaryAdapter alloc] init];
     }
 }
@@ -62,10 +62,6 @@
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:adaptedError];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
-}
-
--(NSArray<NSString *> *)supportedEvents {
-    return @[@"CardLinkFailed"];
 }
 
 @end
