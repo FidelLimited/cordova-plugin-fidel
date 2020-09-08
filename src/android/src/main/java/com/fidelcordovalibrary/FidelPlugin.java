@@ -11,8 +11,8 @@ import com.fidelcordovalibrary.adapters.FidelCardSchemesAdapter;
 import com.fidelcordovalibrary.adapters.FidelCountryAdapter;
 import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.adapters.FidelSetupAdapter;
-import com.fidelcordovalibrary.adapters.ImageFromReadableMapAdapter;
-import com.fidelcordovalibrary.adapters.WritableMapDataConverter;
+import com.fidelcordovalibrary.adapters.ImageAdapter;
+import com.fidelcordovalibrary.adapters.JSONObjectDataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.DataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
@@ -45,15 +45,15 @@ public class FidelPlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         setupProcessor = new FidelSetupAdapter();
-        ImageFromReadableMapAdapter imageAdapter =
-                new ImageFromReadableMapAdapter(cordova.getActivity().getApplicationContext());
+        ImageAdapter imageAdapter =
+                new ImageAdapter(cordova.getActivity().getApplicationContext());
         CountryAdapter countryAdapter =
                 new FidelCountryAdapter();
         FidelCardSchemesAdapter cardSchemesAdapter =
                 new FidelCardSchemesAdapter();
         optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
         imageAdapter.bitmapOutput = optionsAdapter;
-        linkResultConverter = new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
+        linkResultConverter = new JSONObjectDataConverter(new ObjectFactory<JSONObject>() {
             @Override
             public JSONObject create() {
                 return new JSONObject();

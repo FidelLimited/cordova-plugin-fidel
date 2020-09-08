@@ -10,10 +10,10 @@ import org.json.JSONObject;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 
-public final class WritableMapDataConverter implements DataConverter<Object, JSONObject> {
+public final class JSONObjectDataConverter implements DataConverter<Object, JSONObject> {
 
     private ObjectFactory<JSONObject> writableMapFactory;
-    public WritableMapDataConverter(ObjectFactory<JSONObject> writableMapFactory) {
+    public JSONObjectDataConverter(ObjectFactory<JSONObject> writableMapFactory) {
         this.writableMapFactory = writableMapFactory;
     }
     @Override

@@ -23,11 +23,11 @@
         <framework src="org.jetbrains:annotations-java5:15.0" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/FidelPlugin.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelSetupAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/ImageFromReadableMapAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/ImageAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelOptionsAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
-        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/WritableMapDataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/JSONObjectDataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CountryAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
         <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />

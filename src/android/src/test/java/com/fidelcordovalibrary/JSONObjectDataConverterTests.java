@@ -4,7 +4,7 @@ import android.os.Parcelable;
 
 import com.fidel.sdk.LinkResult;
 import com.fidel.sdk.LinkResultErrorCode;
-import com.fidelcordovalibrary.adapters.WritableMapDataConverter;
+import com.fidelcordovalibrary.adapters.JSONObjectDataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
 
 import org.json.JSONException;
@@ -23,16 +23,16 @@ import static org.junit.Assert.fail;
 
 //Custom test runner is necessary for being able to use JSONObject
 @RunWith(RobolectricTestRunner.class)
-public class WritableMapDataConverterTests {
+public class JSONObjectDataConverterTests {
 
     private static final String TEST_CARD_ID = "Test Card ID";
     private static final String TEST_ERROR_MESSAGE = "Test Error Message";
 
-    private WritableMapDataConverter sut;
+    private JSONObjectDataConverter sut;
 
     @Before
     public final void setUp() {
-        sut = new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
+        sut = new JSONObjectDataConverter(new ObjectFactory<JSONObject>() {
             @Override
             public JSONObject create() {
                 return new JSONObject();
