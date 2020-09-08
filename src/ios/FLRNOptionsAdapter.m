@@ -58,9 +58,11 @@ NSString *const kTermsConditionsURLOptionKey = @"termsConditionsUrl";
 - (void)setOptions:(NSDictionary *)options {
     NSArray *allOptionKeys = options.allKeys;
     if ([allOptionKeys containsObject:kBannerImageOptionKey]) {
-        id rawBannerData = options[kBannerImageOptionKey];
-        UIImage *bannerImage = [self.imageAdapter imageFromRawData:rawBannerData];
-        [FLFidel setBannerImage:bannerImage];
+        Boolean showBanner = [options[kBannerImageOptionKey] boolValue];
+        if (showBanner) {
+            UIImage *bannerImage = [self.imageAdapter processBannerImage];
+            [FLFidel setBannerImage:bannerImage];
+        }
     }
     
     if ([allOptionKeys containsObject:kCountryOptionKey]) {

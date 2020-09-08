@@ -11,6 +11,6 @@
 
 @protocol FLRNImageAdapter <NSObject>
 
--(UIImage *)imageFromRawData:(id)rawImageData;
+-(UIImage *)processBannerImage;
 
 @end
