@@ -22,8 +22,7 @@
     "loyalty"
   ],
   "dependencies": {
-    "cordova-android": "^8.1.0",
-    "cordova-ios": "^5.1.1"
+    "cordova-android": "^8.1.0"
   },
   "devDependencies": {
     "@cordova/eslint-config": "^3.0.0",
@@ -39,8 +38,7 @@
       "cordova-plugin-whitelist": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   }
 }
