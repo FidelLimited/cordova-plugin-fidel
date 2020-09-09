@@ -80,9 +80,9 @@ window.plugins.fidelfunctions.setup(
 //this is the default value for supported card schemes,
 //but you can remove the support for some of the card schemes if you want to
 const cardSchemes = new Set([
-  Fidel.CardScheme.visa,
-  Fidel.CardScheme.mastercard,
-  Fidel.CardScheme.americanExpress
+  FidelConstants.CardScheme.VISA,
+  FidelConstants.CardScheme.MASTERCARD,
+  FidelConstants.CardScheme.AMERICAN_EXPRESS
 ]);
 
 window.plugins.fidelfunctions.setOptions(
@@ -150,7 +150,7 @@ Both `success` and `error` are objects that look like in the following examples:
 
 ### showBannerImage
 
-Use this option to customize the topmost banner image with the Fidel UI. In order to do so, you must overwrite the ```banner.png``` file from ```cordova-plugin-fidel/src/android/src/main/res/drawable-port-<density>```, where ```<density>``` is ```mdpi```, ```xhdpi``` and ```xxhdpi```. Note that you image has to be called ```banner.png``` in order to be displayed in the UI
+Use this option to customize the topmost banner image with the Fidel UI. In order to do so, you must add an image called ```banner.png``` to ```platforms/android/app/src/main/res/drawable-port-<density>```, where ```<density>``` is ```mdpi```, ```xhdpi``` and ```xxhdpi```. Note that your image has to be called ```banner.png``` in order to be displayed in the UI.
 
 ```javascript
 window.plugins.fidelfunctions.setOptions(
