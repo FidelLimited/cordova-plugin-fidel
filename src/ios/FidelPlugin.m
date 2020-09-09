@@ -1,4 +1,3 @@
-
 #import "FidelPlugin.h"
 #import <Cordova/CDVPlugin.h>
 #if __has_include(<Fidel/Fidel-Swift.h>)
@@ -13,13 +12,14 @@
 #import "FLCountryFromJSAdapter.h"
 #import "ImageAdapter.h"
 #import "FLCardSchemesFromJSAdapter.h"
-#import "FLRNRuntimeObjectToDictionaryAdapter.h"
+#import "FLRuntimeObjectToDictionaryAdapter.h"
+#import "FLObjectToDictionaryAdapter.h"
 
 @interface FidelPlugin()
 
 @property (nonatomic, strong) FLOptionsAdapter *adapter;
 @property (nonatomic, strong) FLSetupAdapter *setupAdapter;
-@property (nonatomic, strong) id<FLRNObjectToDictionaryAdapter> objectAdapter;
+@property (nonatomic, strong) id<FLObjectToDictionaryAdapter> objectAdapter;
 
 @end
 
@@ -28,15 +28,15 @@
 
 - (void)pluginInitialize {
     if (self) {
-        id<FLRNCountryAdapter> countryAdapter;
+        id<FLCountryAdapter> countryAdapter;
         countryAdapter = [[FLCountryFromJSAdapter alloc] init];
-        id<FLRNImageAdapter> imageAdapter = [[ImageAdapter alloc] init];
+        id<FLImageAdapter> imageAdapter = [[ImageAdapter alloc] init];
         id<FLCardSchemesAdapter> cardSchemesAdapter = [[FLCardSchemesFromJSAdapter alloc] init];
         _adapter = [[FLOptionsAdapter alloc] initWithCountryAdapter:countryAdapter
                                                          imageAdapter:imageAdapter
                                                    cardSchemesAdapter:cardSchemesAdapter];
         _setupAdapter = [[FLSetupAdapter alloc] init];
-        _objectAdapter = [[FLRNRuntimeObjectToDictionaryAdapter alloc] init];
+        _objectAdapter = [[FLRuntimeObjectToDictionaryAdapter alloc] init];
     }
 }
 

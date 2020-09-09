@@ -1,7 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "FLRNConstantsProvider.h"
 
-@protocol FLCardSchemesAdapter <FLRNConstantsProvider>
+@protocol FLCardSchemesAdapter
 
 -(NSSet<NSNumber *> *)cardSchemesWithRawObject:(id)objectToAdapt;
 

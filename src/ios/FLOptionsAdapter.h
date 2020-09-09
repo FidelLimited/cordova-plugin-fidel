@@ -1,16 +1,16 @@
 #import <Foundation/Foundation.h>
 
-@protocol FLRNCountryAdapter;
-@protocol FLRNImageAdapter;
-@protocol FLRNCardSchemesAdapter;
+@protocol FLCountryAdapter;
+@protocol FLImageAdapter;
+@protocol FLCardSchemesAdapter;
 
 @interface FLOptionsAdapter : NSObject
 
 @property (nonatomic, readonly) NSDictionary *constantsToExport;
 
--(instancetype)initWithCountryAdapter:(id<FLRNCountryAdapter>)countryAdapter
-                         imageAdapter:(id<FLRNImageAdapter>)imageAdapter
-                   cardSchemesAdapter:(id<FLRNCardSchemesAdapter>)cardSchemesAdapter;
+-(instancetype)initWithCountryAdapter:(id<FLCountryAdapter>)countryAdapter
+                         imageAdapter:(id<FLImageAdapter>)imageAdapter
+                   cardSchemesAdapter:(id<FLCardSchemesAdapter>)cardSchemesAdapter;
 
 -(void)setOptions: (NSDictionary *)options;
 

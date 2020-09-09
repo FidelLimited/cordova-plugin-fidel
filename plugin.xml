@@ -43,23 +43,22 @@
         </config-file>
         <header-file src="src/ios/FidelPlugin.h"/>
         <source-file src="src/ios/FidelPlugin.m"/>
-        <header-file src="src/ios/FLRNSetupAdapter.h"/>
-        <source-file src="src/ios/FLRNSetupAdapter.m"/>
-        <header-file src="src/ios/FLRNOptionsAdapter.h"/>
-        <source-file src="src/ios/FLRNOptionsAdapter.m"/>
-        <header-file src="src/ios/FLRNCountryFromJSAdapter.h"/>
-        <source-file src="src/ios/FLRNCountryFromJSAdapter.m"/>
-        <header-file src="src/ios/FLRNCountryAdapter.h"/>
-        <header-file src="src/ios/FLRNConstantsProvider.h"/>
-        <header-file src="src/ios/FLRNImageFromRNAdapter.h"/>
-        <source-file src="src/ios/FLRNImageFromRNAdapter.m"/>
-        <header-file src="src/ios/FLRNImageAdapter.h"/>
-        <header-file src="src/ios/FLRNCardSchemesFromJSAdapter.h"/>
-        <source-file src="src/ios/FLRNCardSchemesFromJSAdapter.m"/>
-        <header-file src="src/ios/FLRNCardSchemesAdapter.h"/>
-        <header-file src="src/ios/FLRNRuntimeObjectToDictionaryAdapter.h"/>
-        <source-file src="src/ios/FLRNRuntimeObjectToDictionaryAdapter.m"/>
-        <header-file src="src/ios/FLRNObjectToDictionaryAdapter.h"/>
+        <header-file src="src/ios/FLSetupAdapter.h"/>
+        <source-file src="src/ios/FLSetupAdapter.m"/>
+        <header-file src="src/ios/FLOptionsAdapter.h"/>
+        <source-file src="src/ios/FLOptionsAdapter.m"/>
+        <header-file src="src/ios/FLCountryFromJSAdapter.h"/>
+        <source-file src="src/ios/FLCountryFromJSAdapter.m"/>
+        <header-file src="src/ios/FLCountryAdapter.h"/>
+        <header-file src="src/ios/ImageAdapter.h"/>
+        <source-file src="src/ios/ImageAdapter.m"/>
+        <header-file src="src/ios/FLImageAdapter.h"/>
+        <header-file src="src/ios/FLCardSchemesFromJSAdapter.h"/>
+        <source-file src="src/ios/FLCardSchemesFromJSAdapter.m"/>
+        <header-file src="src/ios/FLCardSchemesAdapter.h"/>
+        <header-file src="src/ios/FLRuntimeObjectToDictionaryAdapter.h"/>
+        <source-file src="src/ios/FLRuntimeObjectToDictionaryAdapter.m"/>
+        <header-file src="src/ios/FLObjectToDictionaryAdapter.h"/>
             <podspec>
       <config>
         <source url="https://github.com/brightcove/BrightcoveSpecs.git" />
