@@ -41,6 +41,13 @@
                 <param name="ios-package" value="FidelPlugin"/>
             </feature>
         </config-file>
+        <config-file target="*-Info.plist" parent="CFBundleLocalizations">
+            <array>
+                <string>en</string>
+                <string>fr</string>
+                <string>sv</string>
+            </array>
+        </config-file>
         <header-file src="src/ios/FidelPlugin.h"/>
         <source-file src="src/ios/FidelPlugin.m"/>
         <header-file src="src/ios/FLSetupAdapter.h"/>
