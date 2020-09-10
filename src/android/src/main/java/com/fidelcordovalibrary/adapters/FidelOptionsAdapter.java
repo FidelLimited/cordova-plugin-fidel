@@ -1,24 +1,20 @@
 package com.fidelcordovalibrary.adapters;
 
-import android.graphics.Bitmap;
+import android.content.Context;
+import android.graphics.BitmapFactory;
 
 import com.fidel.sdk.Fidel;
+import com.fidelcordovalibrary.R;
 import com.fidelcordovalibrary.adapters.abstraction.CardSchemesAdapter;
-import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
-import com.fidelcordovalibrary.adapters.abstraction.DataOutput;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
-public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, DataOutput<Bitmap> {
+public final class FidelOptionsAdapter implements DataProcessor<JSONObject> {
 
     public static final String BANNER_IMAGE_KEY = "showBannerImage";
     public static final String AUTO_SCAN_KEY = "autoScan";
@@ -30,37 +26,24 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
     public static final String META_DATA_KEY = "metaData";
     public static final String COUNTRY_KEY = "country";
     public static final String CARD_SCHEMES_KEY = "supportedCardSchemes";
-    public static final List<String> OPTION_KEYS = Collections.unmodifiableList(
-            Arrays.asList(
-                    BANNER_IMAGE_KEY,
-                    AUTO_SCAN_KEY,
-                    COMPANY_NAME_KEY,
-                    PROGRAM_NAME_KEY,
-                    DELETE_INSTRUCTIONS_KEY,
-                    PRIVACY_URL_KEY,
-                    TERMS_CONDITIONS_URL_KEY,
-                    META_DATA_KEY,
-                    COUNTRY_KEY,
-                    CARD_SCHEMES_KEY
-            ));
 
-    private final DataProcessor<Boolean> imageAdapter;
-    private final CountryAdapter countryAdapter;
     private final CardSchemesAdapter cardSchemesAdapter;
+    private Context context;
 
-    public FidelOptionsAdapter(DataProcessor<Boolean> imageAdapter,
-                               CountryAdapter countryAdapter,
-                               CardSchemesAdapter cardSchemesAdapter) {
-        this.imageAdapter = imageAdapter;
-        this.countryAdapter = countryAdapter;
+    public FidelOptionsAdapter(CardSchemesAdapter cardSchemesAdapter,
+                               Context context) {
         this.cardSchemesAdapter = cardSchemesAdapter;
+        this.context = context;
     }
 
     @Override
     public void process(JSONObject data) {
         if (valueIsValidFor(data, BANNER_IMAGE_KEY)) {
             try {
-                imageAdapter.process(data.getBoolean(BANNER_IMAGE_KEY));
+                if (data.getBoolean(BANNER_IMAGE_KEY)) {
+                    Fidel.bannerImage = BitmapFactory.decodeResource(this.context.getResources(),
+                            R.drawable.banner);
+                }
             }
             catch (JSONException e) {
                 e.printStackTrace();
@@ -116,9 +99,9 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
         }
         if (valueIsValidFor(data, META_DATA_KEY)) {
             try {
-                JSONObject metaDataMap = data.getJSONObject(META_DATA_KEY);
-                if (metaDataMap != null) {
-                    Fidel.metaData = metaDataMap;
+                JSONObject json = data.getJSONObject(META_DATA_KEY);
+                if (json != null) {
+                    Fidel.metaData = json;
                 }
             }
             catch (JSONException e) {
@@ -129,7 +112,9 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
         if (valueIsValidFor(data, COUNTRY_KEY)) {
             try {
                 int countryInt = data.getInt(COUNTRY_KEY);
-                Fidel.country = countryAdapter.countryWithInteger(countryInt);
+                if (countryInt < Fidel.Country.values().length) {
+                    Fidel.country = Fidel.Country.values()[countryInt];
+                }
             }
             catch (JSONException e) {
                 Fidel.country = null;
@@ -137,7 +122,7 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
         }
         if (data.has(CARD_SCHEMES_KEY)) {
             try {
-                Fidel.supportedCardSchemes = cardSchemesAdapter.cardSchemesWithReadableArray(data.getJSONArray(CARD_SCHEMES_KEY));
+                Fidel.supportedCardSchemes = cardSchemesAdapter.cardSchemesWithJSONArray(data.getJSONArray(CARD_SCHEMES_KEY));
             }
             catch (JSONException e) {
                 Fidel.supportedCardSchemes = EnumSet.allOf(Fidel.CardScheme.class);
@@ -145,9 +130,9 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
         }
     }
 
-    private boolean valueIsValidFor(JSONObject map, String key) {
+    private boolean valueIsValidFor(JSONObject inputJsonObject, String key) {
         try {
-            Object value = map.get(key);
+            Object value = inputJsonObject.get(key);
             if (value.getClass() == JSONObject.class) {
                 JSONObject result = (JSONObject) value;
                 Iterator<String> jsonKeyIterator = result.keys();
@@ -157,16 +142,11 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
                     return (nestedValue != null && !nestedValue.equals(""));
                 }
             }
-            return (map.has(key) && !map.isNull(key) && !map.get(key).equals(""));
+            return (inputJsonObject.has(key) && !inputJsonObject.isNull(key) && !inputJsonObject.get(key).equals(""));
         }
         catch (JSONException e) {
             return false;
         }
-    }
-
-    @Override
-    public void output(Bitmap data) {
-        Fidel.bannerImage = data;
     }
 
 }

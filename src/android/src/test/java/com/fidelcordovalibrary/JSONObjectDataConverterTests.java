@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
 import java.lang.reflect.Field;
+import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -55,27 +56,45 @@ public class JSONObjectDataConverterTests {
         LinkResult linkResult = new LinkResult(TEST_CARD_ID);
         setFieldsFor(linkResult);
 
-        JSONObject receivedMap = sut.getConvertedDataFor(linkResult);
+        JSONObject receivedJsonObject = sut.getConvertedDataFor(linkResult);
 
         for (Field field: linkResult.getClass().getDeclaredFields()) {
             try {
                 if (field.getType() == String.class) {
-                    String receivedString = receivedMap.getString(field.getName());
+                    String receivedString = receivedJsonObject.getString(field.getName());
                     assertEquals(receivedString, field.get(linkResult));
                 }
                 else if (field.getType() == boolean.class || field.getType() == Boolean.class) {
-                    boolean receivedVal = receivedMap.getBoolean(field.getName());
+                    boolean receivedVal = receivedJsonObject.getBoolean(field.getName());
                     assertEquals(receivedVal, field.get(linkResult));
                 }
                 else if (field.getType() == int.class) {
-                    int receivedVal = receivedMap.getInt(field.getName());
+                    int receivedVal = receivedJsonObject.getInt(field.getName());
                     assertEquals(receivedVal, field.get(linkResult));
                 }
                 else if (field.getType() == JSONObject.class) {
-                    JSONObject mapJson = receivedMap.getJSONObject(field.getName());
+                    JSONObject mapJson = receivedJsonObject.getJSONObject(field.getName());
                     JSONObject jsonField = (JSONObject)field.get(linkResult);
                     //TODO: Find a way to remove whitespace comparison from the assert
-                    assertEquals(mapJson, jsonField);
+                    //assertEquals(mapJson, jsonField);
+                    Iterator<String> jsonKeyIterator = mapJson.keys();
+                    while (jsonKeyIterator.hasNext()) {
+                        String key = jsonKeyIterator.next();
+                        Object refereceValue = mapJson.get(key);
+                        Object compareValue = jsonField.get(key);
+                        if (refereceValue.getClass() == JSONObject.class) {
+                            Iterator<String> nestedKeyIterator = ((JSONObject) refereceValue).keys();
+                            while (nestedKeyIterator.hasNext()) {
+                                String nestedKey = nestedKeyIterator.next();
+                                Object nestedReferenceValue = ((JSONObject) refereceValue).get(nestedKey);
+                                Object nestedCompareValue = ((JSONObject) compareValue).get(nestedKey);
+                                assertEquals(nestedReferenceValue, nestedCompareValue);
+                            }
+                        }
+                        else {
+                            assertEquals(refereceValue, compareValue);
+                        }
+                    }
 
                 }
                 else if (field.getType() != Parcelable.Creator.class) {

@@ -30,47 +30,6 @@ public final class FidelCardSchemesAdapterTests {
 
     private FidelCardSchemesAdapter sut = new FidelCardSchemesAdapter();
 
-    //Test to expose correct card scheme keys
-    @Test
-    public void test_ToExposeConstantsWithCorrectKey() {
-        Map<String, Object> exposedConstants = sut.getConstants();
-        assertThat(exposedConstants.keySet(), hasItem(CARD_SCHEMES_KEY));
-    }
-
-    @Test
-    public void test_ToExposeCorrectVisaKey() {
-        assertThat(getConstantKeyValues().keySet(), hasItem(VISA_CARD_SCHEME_KEY));
-    }
-
-    @Test
-    public void test_ToExposeCorrectAmericanExpressKey() {
-        assertThat(getConstantKeyValues().keySet(), hasItem(AMEX_SCHEME_KEY));
-    }
-
-    @Test
-    public void test_ToExposeCorrectMastercardKey() {
-        assertThat(getConstantKeyValues().keySet(), hasItem(MASTERCARD_SCHEME_KEY));
-    }
-
-    //Test to expose correct card scheme values
-    @Test
-    public void test_ToExposeCorrectVisaValue() {
-        int cardSchemesValue = getConstantKeyValues().get(VISA_CARD_SCHEME_KEY);
-        assertEquals(Fidel.CardScheme.VISA.ordinal(), cardSchemesValue);
-    }
-
-    @Test
-    public void test_ToExposeCorrectMastercardValue() {
-        int cardSchemesValue = getConstantKeyValues().get(MASTERCARD_SCHEME_KEY);
-        assertEquals(Fidel.CardScheme.MASTERCARD.ordinal(), cardSchemesValue);
-    }
-
-    @Test
-    public void test_ToExposeCorrectAmericanExpressValue() {
-        int cardSchemesValue = getConstantKeyValues().get(AMEX_SCHEME_KEY);
-        assertEquals(Fidel.CardScheme.AMERICAN_EXPRESS.ordinal(), cardSchemesValue);
-    }
-
     //Adaptation tests
     @Test
     public void test_WhenAdaptingArrayWithVisa_ReturnSetWithVisaCardScheme() {
@@ -108,13 +67,13 @@ public final class FidelCardSchemesAdapterTests {
 
     @Test
     public void test_WhenAdapting0Schemes_ReturnEmptySet() {
-        Set<Fidel.CardScheme> result = sut.cardSchemesWithReadableArray(new JSONArray());
+        Set<Fidel.CardScheme> result = sut.cardSchemesWithJSONArray(new JSONArray());
         assertEquals(0, result.size());
     }
 
     @Test
     public void test_WhenAdaptingNullSchemes_ReturnNullSet() {
-        assertNull(sut.cardSchemesWithReadableArray(null));
+        assertNull(sut.cardSchemesWithJSONArray(null));
     }
 
     @Test
@@ -124,7 +83,7 @@ public final class FidelCardSchemesAdapterTests {
             JSONArray invalidDoubleValues = new JSONArray();
             invalidDoubleValues.put(invalidValue);
             invalidDoubleValues.put(Fidel.CardScheme.VISA.ordinal());
-            Set<Fidel.CardScheme> result = sut.cardSchemesWithReadableArray(invalidDoubleValues);
+            Set<Fidel.CardScheme> result = sut.cardSchemesWithJSONArray(invalidDoubleValues);
             assertEquals(EnumSet.of(Fidel.CardScheme.VISA), result);
         }
         catch (JSONException e) {
@@ -139,7 +98,7 @@ public final class FidelCardSchemesAdapterTests {
             JSONArray invalidDoubleValues = new JSONArray();
             invalidDoubleValues.put(validDoubleValue);
             invalidDoubleValues.put(Fidel.CardScheme.VISA.ordinal());
-            Set<Fidel.CardScheme> result = sut.cardSchemesWithReadableArray(invalidDoubleValues);
+            Set<Fidel.CardScheme> result = sut.cardSchemesWithJSONArray(invalidDoubleValues);
             assertEquals(EnumSet.of(Fidel.CardScheme.VISA, Fidel.CardScheme.MASTERCARD), result);
         }
         catch (JSONException e) {
@@ -148,13 +107,6 @@ public final class FidelCardSchemesAdapterTests {
     }
 
     //Helpers
-    private @Nonnull Map<String, Integer> getConstantKeyValues() {
-        Map<String, Object> exposedConstants = sut.getConstants();
-        Map<String, Integer> constantKeyValues = (Map<String, Integer>)exposedConstants.get(CARD_SCHEMES_KEY);
-        if (constantKeyValues == null) return new HashMap<>();
-        return constantKeyValues;
-    }
-
     private void assertCorrectConversionWithSchemes(Fidel.CardScheme... schemes) {
         Integer[] schemeOrdinals = new Integer[schemes.length];
         JSONArray arrayStub = new JSONArray();
@@ -165,7 +117,7 @@ public final class FidelCardSchemesAdapterTests {
             arrayStub.put((Object) schemeOrdinals[schemeNumber]);
             schemeNumber++;
         }
-        Set<Fidel.CardScheme> result = sut.cardSchemesWithReadableArray(arrayStub);
+        Set<Fidel.CardScheme> result = sut.cardSchemesWithJSONArray(arrayStub);
         assertEquals(EnumSet.copyOf(Arrays.asList(schemes)), result);
     }
 }

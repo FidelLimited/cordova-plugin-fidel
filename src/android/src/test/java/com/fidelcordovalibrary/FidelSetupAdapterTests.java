@@ -35,15 +35,15 @@ public class FidelSetupAdapterTests {
 
     @Test
     public void test_WhenDataHasNoApiKey_DontSetItToSDK() {
-        JSONObject mapStub = JSONObjectStub.mapWithNoKey();
-        sut.process(mapStub);
+        JSONObject jsonObjectStub = JSONObjectStub.JSONObjectWithNoKey();
+        sut.process(jsonObjectStub);
         assertNull(Fidel.apiKey);
     }
 
     @Test
     public void test_WhenDataHasNoProgramIDKey_DontSetItToSDK() {
-        JSONObject mapStub = JSONObjectStub.mapWithNoKey();
-        sut.process(mapStub);
+        JSONObject jsonObjectStub = JSONObjectStub.JSONObjectWithNoKey();
+        sut.process(jsonObjectStub);
         assertNull(Fidel.programId);
     }
 
@@ -62,10 +62,10 @@ public class FidelSetupAdapterTests {
     }
 
     private void processWithString(String key, String value) {
-        JSONObject mapStub = new JSONObject();
+        JSONObject jsonObjectStub = new JSONObject();
         try {
-            mapStub.put(key, value);
-            sut.process(mapStub);
+            jsonObjectStub.put(key, value);
+            sut.process(jsonObjectStub);
         }
         catch (JSONException e) {
             e.printStackTrace();

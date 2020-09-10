@@ -5,10 +5,7 @@ import com.fidelcordovalibrary.adapters.abstraction.CardSchemesAdapter;
 
 import org.json.JSONArray;
 
-import java.util.Map;
 import java.util.Set;
-
-import javax.annotation.Nonnull;
 
 public final class CardSchemeAdapterStub implements CardSchemesAdapter {
 
@@ -16,7 +13,7 @@ public final class CardSchemeAdapterStub implements CardSchemesAdapter {
     public Set<Fidel.CardScheme> fakeAdaptedCardSchemesToReturn;
 
     @Override
-    public Set<Fidel.CardScheme> cardSchemesWithReadableArray(JSONArray cardSchemes) {
+    public Set<Fidel.CardScheme> cardSchemesWithJSONArray(JSONArray cardSchemes) {
         cardSchemesReceived = cardSchemes;
         return fakeAdaptedCardSchemesToReturn;
     }

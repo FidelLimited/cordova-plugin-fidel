@@ -45,7 +45,7 @@ buildscript {
 
 **4.** Our plugin contains native automated tests to ensure the quality of the plugin. To accomodate these tests, the plugin structure is a bit different than that of most plugins. Therefore, an extra step is needed after the plugin is installed: go to ```platforms/android/app/src/main/java/android/src/main/java``` and copy the ```com``` folder and its content to ```platforms/android/app/src/main/java/```, then delete the ```platforms/android/app/src/main/java/android/``` folder.
 
-**5.** After you perform step #4, open ```platforms/android/app/src/main/java/com/fidelcordovalibrary/adapters/ImageFromReadableMapAdapter.java``` and change ```import com.fidelcordovalibrary.R;``` to your package name (e.g. ```import io.cordova.hellocordova.R;```)
+**5.** After you perform step #4, open ```platforms/android/app/src/main/java/com/fidelcordovalibrary/adapters/FidelOptionsAdapter.java``` and change ```import com.fidelcordovalibrary.R;``` to your package name (e.g. ```import io.cordova.hellocordova.R;```)
 
 ## How to use Fidel's Cordova plugin
 

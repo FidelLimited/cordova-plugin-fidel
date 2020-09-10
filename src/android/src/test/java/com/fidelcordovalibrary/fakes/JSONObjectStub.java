@@ -3,17 +3,9 @@ package com.fidelcordovalibrary.fakes;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class JSONObjectStub {
 
-    public List<String> keyNamesCheckedFor = new ArrayList<>();
-    public HashMap<String, Object> hashMapToReturn;
-    public int intToReturn;
-
-    public static JSONObject mapWithNoKey() {
+    public static JSONObject JSONObjectWithNoKey() {
         JSONObject object = new JSONObject();
         try {
             object.put("", "");
@@ -25,7 +17,7 @@ public class JSONObjectStub {
         }
     }
 
-    public static JSONObject mapWithExistingKey(String existingKey) {
+    public static JSONObject JSONObjectWithExistingKey(String existingKey) {
         JSONObject object = new JSONObject();
         try {
             object.put(existingKey, "");
@@ -37,7 +29,7 @@ public class JSONObjectStub {
         }
     }
 
-    public static JSONObject mapWithExistingKeyButNoValue(String existingKey) {
+    public static JSONObject JSONObjectWithExistingKeyButNoValue(String existingKey) {
         JSONObject object = new JSONObject();
         try {
             object.put(existingKey, existingKey);
@@ -49,7 +41,7 @@ public class JSONObjectStub {
         }
     }
 
-    public static JSONObject mapWithKeyAndValue(String existingKey, Object value) {
+    public static JSONObject JSONObjectWithKeyAndValue(String existingKey, Object value) {
         JSONObject object = new JSONObject();
         try {
             object.put(existingKey, value);

@@ -12,46 +12,46 @@ import java.util.Iterator;
 
 public final class JSONObjectDataConverter implements DataConverter<Object, JSONObject> {
 
-    private ObjectFactory<JSONObject> writableMapFactory;
-    public JSONObjectDataConverter(ObjectFactory<JSONObject> writableMapFactory) {
-        this.writableMapFactory = writableMapFactory;
+    private ObjectFactory<JSONObject> jsonObjectFactory;
+    public JSONObjectDataConverter(ObjectFactory<JSONObject> jsonObjectFactory) {
+        this.jsonObjectFactory = jsonObjectFactory;
     }
     @Override
     public JSONObject getConvertedDataFor(Object data) {
         if (data == null) {
             return null;
         }
-        JSONObject map = writableMapFactory.create();
+        JSONObject createdJsonObject = jsonObjectFactory.create();
         try {
             for (Field field: data.getClass().getDeclaredFields()) {
                 if (field.getType() == String.class) {
-                    map.put(field.getName(), (String)field.get(data));
+                    createdJsonObject.put(field.getName(), (String)field.get(data));
                 }
                 else if (field.getType() == boolean.class || field.getType() == Boolean.class) {
-                    map.put(field.getName(), (boolean)field.get(data));
+                    createdJsonObject.put(field.getName(), (boolean)field.get(data));
                 }
                 else if (field.getType() == int.class) {
-                    map.put(field.getName(), (int)field.get(data));
+                    createdJsonObject.put(field.getName(), (int)field.get(data));
                 }
                 else if (field.getType() == LinkResultErrorCode.class) {
                     LinkResultErrorCode errorCode = (LinkResultErrorCode)field.get(data);
-                    map.put(field.getName(), errorCode.toString().toLowerCase());
+                    createdJsonObject.put(field.getName(), errorCode.toString().toLowerCase());
                 }
                 else if (field.getType() == JSONObject.class) {
-                    JSONObject mapToPut = this.getMapFor((JSONObject)field.get(data));
-                    map.put(field.getName(), mapToPut);
+                    JSONObject jsonObjectToPut = this.getJsonObjectFor((JSONObject)field.get(data));
+                    createdJsonObject.put(field.getName(), jsonObjectToPut);
                 }
             }
-            return map;
+            return createdJsonObject;
         }
         catch (Exception e) {
-            return map;
+            return createdJsonObject;
         }
     }
 
-    private JSONObject getMapFor(JSONObject json) {
+    private JSONObject getJsonObjectFor(JSONObject json) {
         Iterator<String> jsonKeyIterator = json.keys();
-        JSONObject map = writableMapFactory.create();
+        JSONObject map = jsonObjectFactory.create();
         while (jsonKeyIterator.hasNext()) {
             String key = jsonKeyIterator.next();
             try {
@@ -67,7 +67,7 @@ public final class JSONObjectDataConverter implements DataConverter<Object, JSON
                     map.put(key, (int)value);
                 }
                 else if (valueClass == JSONObject.class) {
-                    JSONObject mapToPut = this.getMapFor((JSONObject)value);
+                    JSONObject mapToPut = this.getJsonObjectFor((JSONObject)value);
                     map.put(key, mapToPut);
                 }
             }

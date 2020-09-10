@@ -8,12 +8,9 @@ import com.fidel.sdk.LinkResult;
 import com.fidel.sdk.LinkResultError;
 import com.fidel.sdk.view.EnterCardDetailsActivity;
 import com.fidelcordovalibrary.adapters.FidelCardSchemesAdapter;
-import com.fidelcordovalibrary.adapters.FidelCountryAdapter;
 import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.adapters.FidelSetupAdapter;
-import com.fidelcordovalibrary.adapters.ImageAdapter;
 import com.fidelcordovalibrary.adapters.JSONObjectDataConverter;
-import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.DataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
@@ -32,11 +29,6 @@ public class FidelPlugin extends CordovaPlugin {
     private FidelOptionsAdapter optionsAdapter;
     private DataConverter<Object, JSONObject> linkResultConverter;
     private CallbackContext callback;
-
-    public FidelPlugin() {
-        super();
-    }
-
     private static final String OPEN_FORM = "openForm";
     private static final String SETUP = "setup";
     private static final String SET_OPTIONS = "setOptions";
@@ -45,14 +37,9 @@ public class FidelPlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         setupProcessor = new FidelSetupAdapter();
-        ImageAdapter imageAdapter =
-                new ImageAdapter(cordova.getActivity().getApplicationContext());
-        CountryAdapter countryAdapter =
-                new FidelCountryAdapter();
         FidelCardSchemesAdapter cardSchemesAdapter =
                 new FidelCardSchemesAdapter();
-        optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
-        imageAdapter.bitmapOutput = optionsAdapter;
+        optionsAdapter = new FidelOptionsAdapter(cardSchemesAdapter, cordova.getActivity().getApplicationContext());
         linkResultConverter = new JSONObjectDataConverter(new ObjectFactory<JSONObject>() {
             @Override
             public JSONObject create() {
@@ -115,9 +102,9 @@ public class FidelPlugin extends CordovaPlugin {
         }
     }
 
-    private void setup(JSONArray map) {
+    private void setup(JSONArray jsonArray) {
         try {
-            JSONObject setupObject = map.getJSONObject(0);
+            JSONObject setupObject = jsonArray.getJSONObject(0);
             setupProcessor.process(setupObject);
         }
         catch (JSONException e) {
@@ -125,9 +112,9 @@ public class FidelPlugin extends CordovaPlugin {
         }
     }
 
-    private void setOptions(JSONArray map) {
+    private void setOptions(JSONArray jsonArray) {
         try {
-            JSONObject optionsObject = map.getJSONObject(0);
+            JSONObject optionsObject = jsonArray.getJSONObject(0);
             optionsAdapter.process(optionsObject);
         }
         catch (JSONException e) {
