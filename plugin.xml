@@ -8,8 +8,8 @@
     <js-module src="www/FidelFunctions.js" name="FidelFunctions">
         <clobbers target="window.plugins.fidelfunctions" />
     </js-module>
-    <js-module src="www/FidelConstants.js" name="FidelConstants">
-        <clobbers target="FidelConstants" />
+    <js-module src="www/Fidel.js" name="Fidel">
+        <clobbers target="Fidel" />
     </js-module>
     <platform name="android">
         <config-file target="config.xml" parent="/*">

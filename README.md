@@ -70,9 +70,9 @@ window.plugins.fidelfunctions.setup(
 //this is the default value for supported card schemes,
 //but you can remove the support for some of the card schemes if you want to
 const cardSchemes = new Set([
-  FidelConstants.CardScheme.VISA,
-  FidelConstants.CardScheme.MASTERCARD,
-  FidelConstants.CardScheme.AMERICAN_EXPRESS
+  Fidel.CardScheme.visa,
+  Fidel.CardScheme.mastercard,
+  Fidel.CardScheme.americanExpress
 ]);
 
 window.plugins.fidelfunctions.setOptions(
@@ -81,7 +81,7 @@ window.plugins.fidelfunctions.setOptions(
   {   
     bannerImageName: "your-image-name", //e.g. "fidel-banner"
     supportedCardSchemes: Array.from(cardSchemes),
-    country: FidelConstants.Country.UNITED_STATES,
+    country: Fidel.Country.unitedStates,
     autoScan: false,
     companyName: 'My Company', // the company name displayed in the checkbox text
     deleteInstructions: 'Your custom delete instructions!',
@@ -165,12 +165,12 @@ window.plugins.fidelfunctions.setOptions(
   function(success) {console.log(success)},
   function(error) {console.log(error)},
   {   
-    country: FidelConstants.Country.UNITED_KINGDOM
+    country: Fidel.Country.unitedKingdom
   }
 );
 ```
 
-When you set a default country, the card linking screen will not show the country picker UI. The other options, for now, are: `.UNITED_STATES`, `.IRELAND`, `.SWEDEN`, `.JAPAN`, `.CANADA`.
+When you set a default country, the card linking screen will not show the country picker UI. The other options, for now, are: `.ireland`, `.unitedStates`, `.sweden`, `.japan`, `.canada`.
 
 ### supportedCardSchemes
 
@@ -182,9 +182,9 @@ Please check the example below:
 
 ```javascript
 const cardSchemes = new Set([
-  FidelConstants.CardScheme.VISA,
-  FidelConstants.CardScheme.MASTERCARD,
-  FidelConstants.CardScheme.AMERICAN_EXPRESS
+  Fidel.CardScheme.visa,
+  Fidel.CardScheme.mastercard,
+  Fidel.CardScheme.americanExpress
 ]);
 
 window.plugins.fidelfunctions.setOptions(
@@ -399,8 +399,6 @@ If you do not set a ```privacyUrl```, the text will become _...may be of interes
 ## Localisation
 
 The SDK's default language is English, but it's also localised for French and Swedish languages. When the device has either `Français (Canada)` or `Svenska (Sverige)` as its language, the appropriate texts will be displayed. Please note that developer error messages are in English only and they will not be displayed to the user.
-
-Please make sure that your project also supports localisation for the languages that you want to support.
 
 ## Test card numbers
 
