@@ -6,13 +6,11 @@
 #else
 #import "Fidel/Fidel-Swift.h" // Required when used as a Pod in a Swift project
 #endif
-#import "FLImageAdapter.h"
 #import "FLCardSchemesAdapter.h"
 
 
 @interface FLOptionsAdapter()
 
-@property (nonatomic, strong) id<FLImageAdapter> imageAdapter;
 @property (nonatomic, strong) id<FLCardSchemesAdapter> cardSchemesAdapter;
 
 @end
@@ -20,12 +18,10 @@
 @implementation FLOptionsAdapter
 
 
-- (instancetype)initWithimageAdapter:(id<FLImageAdapter>)imageAdapter
-                cardSchemesAdapter:(id<FLCardSchemesAdapter>)cardSchemesAdapter {
+-(instancetype)initWithcardSchemesAdapter:(id<FLCardSchemesAdapter>)cardSchemesAdapter {
     
     self = [super init];
     if (self) {
-        _imageAdapter = imageAdapter;
         _cardSchemesAdapter = cardSchemesAdapter;
     }
     return self;
@@ -50,7 +46,7 @@ NSString *const kTermsConditionsURLOptionKey = @"termsConditionsUrl";
     if ([allOptionKeys containsObject:kBannerImageOptionKey]) {
         Boolean showBanner = [options[kBannerImageOptionKey] boolValue];
         if (showBanner) {
-            UIImage *bannerImage = [self.imageAdapter processBannerImage];
+            UIImage *bannerImage = [UIImage imageNamed:@"banner.png"];
             [FLFidel setBannerImage:bannerImage];
         }
     }
