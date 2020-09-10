@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 
 import com.fidel.sdk.Fidel;
-import com.fidelcordovalibrary.R;
 import com.fidelcordovalibrary.adapters.abstraction.CardSchemesAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 
@@ -16,7 +15,7 @@ import java.util.Iterator;
 
 public final class FidelOptionsAdapter implements DataProcessor<JSONObject> {
 
-    public static final String BANNER_IMAGE_KEY = "showBannerImage";
+    public static final String BANNER_IMAGE_KEY = "bannerImageName";
     public static final String AUTO_SCAN_KEY = "autoScan";
     public static final String COMPANY_NAME_KEY = "companyName";
     public static final String PROGRAM_NAME_KEY = "programName";
@@ -40,13 +39,14 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject> {
     public void process(JSONObject data) {
         if (valueIsValidFor(data, BANNER_IMAGE_KEY)) {
             try {
-                if (data.getBoolean(BANNER_IMAGE_KEY)) {
-                    Fidel.bannerImage = BitmapFactory.decodeResource(this.context.getResources(),
-                            R.drawable.banner);
-                }
+                String imageToDisplay = data.getString(BANNER_IMAGE_KEY);
+                String uri = "@drawable/" + imageToDisplay;
+                int imageResource = this.context.getResources().getIdentifier(uri, null, this.context.getPackageName());
+                Fidel.bannerImage = BitmapFactory.decodeResource(this.context.getResources(),
+                        imageResource);
             }
             catch (JSONException e) {
-                e.printStackTrace();
+                Fidel.bannerImage = null;
             }
         }
         if (valueIsValidFor(data, AUTO_SCAN_KEY)) {

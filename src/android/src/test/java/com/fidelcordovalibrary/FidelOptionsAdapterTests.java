@@ -221,19 +221,33 @@ public class FidelOptionsAdapterTests {
 
     //Setting correct values tests
     @Test
-    public void test_WhenBannerImageFlagIsTrue_SetSDKBannerImage() {
-        Bitmap newBitmap = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.banner);
-        jsonObject = JSONObjectStub.JSONObjectWithKeyAndValue(FidelOptionsAdapter.BANNER_IMAGE_KEY, true);
+    public void test_WhenBannerImageNameIsSet_SetSDKBannerImage() {
+        Bitmap newBitmap = BitmapFactory.decodeResource(this.context.getResources(), R.drawable.fl_banner);
+        jsonObject = JSONObjectStub.JSONObjectWithKeyAndValue(FidelOptionsAdapter.BANNER_IMAGE_KEY, "fl_banner");
         sut.process(jsonObject);
         boolean isSameBitmap = newBitmap.sameAs(Fidel.bannerImage);
         assertTrue(isSameBitmap);
     }
 
     @Test
-    public void test_WhenBannerImageFlagIsFalse_DoNotSetSDKBannerImage() {
-        jsonObject = JSONObjectStub.JSONObjectWithKeyAndValue(FidelOptionsAdapter.BANNER_IMAGE_KEY, false);
+    public void test_WhenBannerImageNameIsEmpty_DoNotSetSDKBannerImage() {
+        jsonObject = JSONObjectStub.JSONObjectWithKeyAndValue(FidelOptionsAdapter.BANNER_IMAGE_KEY, "");
         sut.process(jsonObject);
-        assertEquals(Fidel.bannerImage, null);
+        assertNull(Fidel.bannerImage);
+    }
+
+    @Test
+    public void test_WhenBannerImageNameIsNull_DoNotSetSDKBannerImage() {
+        jsonObject = JSONObjectStub.JSONObjectWithKeyAndValue(FidelOptionsAdapter.BANNER_IMAGE_KEY, null);
+        sut.process(jsonObject);
+        assertNull(Fidel.bannerImage);
+    }
+
+    @Test
+    public void test_WhenBannerImageNameIsMissing_DoNotSetSDKBannerImage() {
+        jsonObject = JSONObjectStub.JSONObjectWithNoKey();
+        sut.process(jsonObject);
+        assertNull(Fidel.bannerImage);
     }
 
     @Test
