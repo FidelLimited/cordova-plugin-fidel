@@ -50,12 +50,6 @@
         <source-file src="src/ios/FLSetupAdapter.m"/>
         <header-file src="src/ios/FLOptionsAdapter.h"/>
         <source-file src="src/ios/FLOptionsAdapter.m"/>
-        <header-file src="src/ios/FLCountryFromJSAdapter.h"/>
-        <source-file src="src/ios/FLCountryFromJSAdapter.m"/>
-        <header-file src="src/ios/FLCountryAdapter.h"/>
-        <header-file src="src/ios/ImageAdapter.h"/>
-        <source-file src="src/ios/ImageAdapter.m"/>
-        <header-file src="src/ios/FLImageAdapter.h"/>
         <header-file src="src/ios/FLCardSchemesFromJSAdapter.h"/>
         <source-file src="src/ios/FLCardSchemesFromJSAdapter.m"/>
         <header-file src="src/ios/FLCardSchemesAdapter.h"/>

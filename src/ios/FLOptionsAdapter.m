@@ -29,7 +29,7 @@
 
 NSString *const kCountryKey = @"Country";
 NSString *const kOptionKey = @"Option";
-NSString *const kBannerImageOptionKey = @"showBannerImage";
+NSString *const kBannerImageOptionKey = @"bannerImageName";
 NSString *const kCountryOptionKey = @"country";
 NSString *const kAutoScanOptionKey = @"autoScan";
 NSString *const kCompanyNameOptionKey = @"companyName";
@@ -44,11 +44,9 @@ NSString *const kTermsConditionsURLOptionKey = @"termsConditionsUrl";
 - (void)setOptions:(NSDictionary *)options {
     NSArray *allOptionKeys = options.allKeys;
     if ([allOptionKeys containsObject:kBannerImageOptionKey]) {
-        Boolean showBanner = [options[kBannerImageOptionKey] boolValue];
-        if (showBanner) {
-            UIImage *bannerImage = [UIImage imageNamed:@"banner.png"];
-            [FLFidel setBannerImage:bannerImage];
-        }
+        NSString *bannerImageName = [self getStringValueFor:kBannerImageOptionKey fromDictionary:options];
+        UIImage *bannerImage = [UIImage imageNamed:bannerImageName];
+        [FLFidel setBannerImage:bannerImage];
     }
     
     if ([allOptionKeys containsObject:kCountryOptionKey]) {

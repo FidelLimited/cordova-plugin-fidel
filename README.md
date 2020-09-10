@@ -79,7 +79,7 @@ window.plugins.fidelfunctions.setOptions(
   function(success) {console.log(success)}, //success callback
   function(error) {console.log(error)}, //error callback
   {   
-    showBannerImage: true,
+    bannerImageName: "your-image-name", //e.g. "fidel-banner"
     supportedCardSchemes: Array.from(cardSchemes),
     country: FidelConstants.Country.UNITED_STATES,
     autoScan: false,
@@ -138,20 +138,20 @@ Both `success` and `error` are objects that look like in the following examples:
 
 ## Options documentation
 
-### showBannerImage
+### bannerImageName
 
-Use this option to customize the topmost banner image with the Fidel UI. In order to do so, you must do the following:
+Use this option to customize the topmost banner image with the Fidel UI. In order to do so, you must add to the Android/iOS project of your Cordova application the image that you want to be displayed. Note that the value of ```bannerImageName``` should **not** contain the image type (e.g. if your image is ```fidel-banner.png```, you should set the option as ```bannerImageName: "fidel-banner"```).
 
-**On Android**, you must add an image called ```banner.png``` to ```platforms/android/app/src/main/res/drawable-port-<density>```, where ```<density>``` is ```mdpi```, ```xhdpi``` and ```xxhdpi```. Note that your image has to be called ```banner.png``` in order to be displayed in the UI.
+**On Android**, you must add the image to ```platforms/android/app/src/main/res/drawable-port-<density>``` folders of your project, where ```<density>``` is ```mdpi```, ```xhdpi``` and ```xxhdpi```.
 
-**On iOS**, add an image called ```banner.png``` to your Xcode project. Make sure to add ```1x```, ```2x``` and ```3x``` image resources. Note that your image has to be called ```banner.png``` in order to be displayed in the UI.
+**On iOS**, the easiest way is to add your image via Xcode. Make sure to add ```1x```, ```2x``` and ```3x``` image resources.
 
 ```javascript
 window.plugins.fidelfunctions.setOptions(
   function(success) {console.log(success)},
   function(error) {console.log(error)},
   {   
-    showBannerImage: true
+    bannerImageName: "your-image-name"
   }
 );
 ```
