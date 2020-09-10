@@ -8,12 +8,12 @@ import com.fidelcordovalibrary.R;
 import com.fidelcordovalibrary.adapters.abstraction.DataOutput;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 
-public final class ImageFromReadableMapAdapter implements DataProcessor<Boolean> {
+public final class ImageAdapter implements DataProcessor<Boolean> {
 
    public DataOutput<Bitmap> bitmapOutput;
    private Context context;
 
-   public ImageFromReadableMapAdapter(Context context) {
+   public ImageAdapter(Context context) {
       this.context = context;
    }
 

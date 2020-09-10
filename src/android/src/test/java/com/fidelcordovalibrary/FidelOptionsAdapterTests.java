@@ -363,21 +363,6 @@ public class FidelOptionsAdapterTests {
         assertEquals(expectedSchemesSet, Fidel.supportedCardSchemes);
     }
 
-    //Exposed constants tests
-    @Test
-    public void test_WhenAskedForConstants_IncludeConstantsFromCountriesAdapter() {
-        Map<String, Object> actualConstants = sut.getConstants();
-        Map<String, Object> expectedConstants = countryAdapterStub.getConstants();
-        assertMapContainsMap(actualConstants, expectedConstants);
-    }
-
-    @Test
-    public void test_WhenAskedForConstants_IncludeConstantsFromCardSchemesAdapter() {
-        Map<String, Object> actualConstants = sut.getConstants();
-        Map<String, Object> expectedConstants = cardSchemesAdapterStub.getConstants();
-        assertMapContainsMap(actualConstants, expectedConstants);
-    }
-
     //Helper functions
     private static HashMap<String, Object> TEST_HASH_MAP() {
         HashMap<String, Object> hashmapToReturn = new HashMap<>();

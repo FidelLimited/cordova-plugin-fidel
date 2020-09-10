@@ -144,9 +144,9 @@ Both `success` and `error` are objects that look like in the following examples:
 
 Use this option to customize the topmost banner image with the Fidel UI. In order to do so, you must do the following:
 
-**On Android**, overwrite the ```banner.png``` file from ```cordova-plugin-fidel/src/android/src/main/res/drawable-port-<density>```, where ```<density>``` is ```mdpi```, ```xhdpi``` and ```xxhdpi```. Note that you image has to be called ```banner.png``` in order to be displayed in the UI
+**On Android**, you must add an image called ```banner.png``` to ```platforms/android/app/src/main/res/drawable-port-<density>```, where ```<density>``` is ```mdpi```, ```xhdpi``` and ```xxhdpi```. Note that your image has to be called ```banner.png``` in order to be displayed in the UI.
 
-**On iOS**, add an image called ```banner.png``` to your Xcode project. Make sure to add ```1x```, ```2x``` and ```3x``` image resources. Note that you image has to be called ```banner.png``` in order to be displayed in the UI
+**On iOS**, add an image called ```banner.png``` to your Xcode project. Make sure to add ```1x```, ```2x``` and ```3x``` image resources. Note that your image has to be called ```banner.png``` in order to be displayed in the UI.
 
 ```javascript
 window.plugins.fidelfunctions.setOptions(

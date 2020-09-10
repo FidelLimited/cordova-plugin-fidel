@@ -15,6 +15,8 @@ import com.fidelcordovalibrary.fakes.IntentMock;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaInterfaceImpl;
+import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaPreferences;
 import org.apache.cordova.CordovaResourceApi;
 import org.apache.cordova.CordovaWebView;
@@ -33,6 +35,7 @@ import org.robolectric.RobolectricTestRunner;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -224,11 +227,59 @@ public class FidelPluginTests {
                 return null;
             }
         };
+
+        CordovaInterface cordovaInterface = new CordovaInterface() {
+            @Override
+            public void startActivityForResult(CordovaPlugin command, Intent intent, int requestCode) {
+
+            }
+
+            @Override
+            public void setActivityResultCallback(CordovaPlugin plugin) {
+
+            }
+
+            @Override
+            public Activity getActivity() {
+                return null;
+            }
+
+            @Override
+            public Context getContext() {
+                return null;
+            }
+
+            @Override
+            public Object onMessage(String id, Object data) {
+                return null;
+            }
+
+            @Override
+            public ExecutorService getThreadPool() {
+                return null;
+            }
+
+            @Override
+            public void requestPermission(CordovaPlugin plugin, int requestCode, String permission) {
+
+            }
+
+            @Override
+            public void requestPermissions(CordovaPlugin plugin, int requestCode, String[] permissions) {
+
+            }
+
+            @Override
+            public boolean hasPermission(String permission) {
+                return false;
+            }
+        };
+
         callbackContext = new CallbackContext(callbackId, cordovaWebView);
-
-
         activity = Robolectric.buildActivity(Activity.class).setup().get();
-        sut.initialize(callbackContext, activity.getApplicationContext());
+        CordovaInterfaceImpl cordovaInterfaceImpl = new CordovaInterfaceImpl(activity);
+        sut.initialize(cordovaInterfaceImpl, cordovaWebView);
+        sut.setCallbackContext(callbackContext);
         intent = new IntentMock<>(activity, Activity.class);
         intent.parcelableExtraToReturn = new LinkResult("TEST CARD ID");
         linkResultConverterStub.convertedDataToReturn = new JSONObject();

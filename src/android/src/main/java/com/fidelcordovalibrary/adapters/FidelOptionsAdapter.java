@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 
 import com.fidel.sdk.Fidel;
 import com.fidelcordovalibrary.adapters.abstraction.CardSchemesAdapter;
-import com.fidelcordovalibrary.adapters.abstraction.ConstantsProvider;
 import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.DataOutput;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
@@ -19,7 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, DataOutput<Bitmap>, ConstantsProvider {
+public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, DataOutput<Bitmap> {
 
     public static final String BANNER_IMAGE_KEY = "showBannerImage";
     public static final String AUTO_SCAN_KEY = "autoScan";
@@ -146,10 +145,6 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
         }
     }
 
-//    private JSONObject getJSONWithMap(ReadableMap metaDataMap) {
-//        return new JSONObject(metaDataMap.toHashMap());
-//    }
-
     private boolean valueIsValidFor(JSONObject map, String key) {
         try {
             Object value = map.get(key);
@@ -174,11 +169,4 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject>, Dat
         Fidel.bannerImage = data;
     }
 
-
-    @Override
-    public Map<String, Object> getConstants() {
-        Map<String, Object> constants = countryAdapter.getConstants();
-        constants.putAll(cardSchemesAdapter.getConstants());
-        return constants;
-    }
 }

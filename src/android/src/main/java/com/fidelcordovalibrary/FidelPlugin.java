@@ -1,7 +1,6 @@
 package com.fidelcordovalibrary;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
 import com.fidel.sdk.Fidel;
@@ -12,30 +11,25 @@ import com.fidelcordovalibrary.adapters.FidelCardSchemesAdapter;
 import com.fidelcordovalibrary.adapters.FidelCountryAdapter;
 import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.adapters.FidelSetupAdapter;
-import com.fidelcordovalibrary.adapters.ImageFromReadableMapAdapter;
-import com.fidelcordovalibrary.adapters.WritableMapDataConverter;
-import com.fidelcordovalibrary.adapters.abstraction.ConstantsProvider;
+import com.fidelcordovalibrary.adapters.ImageAdapter;
+import com.fidelcordovalibrary.adapters.JSONObjectDataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.DataConverter;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 import com.fidelcordovalibrary.adapters.abstraction.ObjectFactory;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.jetbrains.annotations.Nullable;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class FidelPlugin extends CordovaPlugin {
 
     private DataProcessor<JSONObject> setupProcessor;
     private FidelOptionsAdapter optionsAdapter;
-    private List<ConstantsProvider> constantsProviderList;
     private DataConverter<Object, JSONObject> linkResultConverter;
     private CallbackContext callback;
 
@@ -48,14 +42,39 @@ public class FidelPlugin extends CordovaPlugin {
     private static final String SET_OPTIONS = "setOptions";
 
     @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        setupProcessor = new FidelSetupAdapter();
+        ImageAdapter imageAdapter =
+                new ImageAdapter(cordova.getActivity().getApplicationContext());
+        CountryAdapter countryAdapter =
+                new FidelCountryAdapter();
+        FidelCardSchemesAdapter cardSchemesAdapter =
+                new FidelCardSchemesAdapter();
+        optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
+        imageAdapter.bitmapOutput = optionsAdapter;
+        linkResultConverter = new JSONObjectDataConverter(new ObjectFactory<JSONObject>() {
+            @Override
+            public JSONObject create() {
+                return new JSONObject();
+            }
+        });
+
+    }
+
+    public void setCallbackContext(CallbackContext callbackContext) {
+        callback = callbackContext;
+    }
+
+
+    @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) {
-        Context context = this.cordova.getActivity().getApplicationContext();
-        initialize(callbackContext, context);
+        setCallbackContext(callbackContext);
         switch (action) {
             case OPEN_FORM:
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    openForm(callbackContext);
+                    openForm();
                 }
             });
             return true;                
@@ -67,28 +86,6 @@ public class FidelPlugin extends CordovaPlugin {
                 return true;
         }
         return false;
-    }
-
-    public void initialize(CallbackContext callbackContext, Context context) {
-        setupProcessor = new FidelSetupAdapter();
-        ImageFromReadableMapAdapter imageAdapter =
-                new ImageFromReadableMapAdapter(context);
-        CountryAdapter countryAdapter =
-                new FidelCountryAdapter();
-        FidelCardSchemesAdapter cardSchemesAdapter =
-                new FidelCardSchemesAdapter();
-        optionsAdapter = new FidelOptionsAdapter(imageAdapter, countryAdapter, cardSchemesAdapter);
-        imageAdapter.bitmapOutput = optionsAdapter;
-        constantsProviderList =
-                new ArrayList<>();
-        constantsProviderList.add(optionsAdapter);
-        linkResultConverter = new WritableMapDataConverter(new ObjectFactory<JSONObject>() {
-            @Override
-            public JSONObject create() {
-                return new JSONObject();
-            }
-        });
-        callback = callbackContext;
     }
 
     @Override
@@ -110,7 +107,7 @@ public class FidelPlugin extends CordovaPlugin {
          }
     }
 
-    private void openForm(CallbackContext callback) {
+    private void openForm() {
         final Activity activity = cordova.getActivity();
         if (activity != null) {
             Intent intent = new Intent(activity, EnterCardDetailsActivity.class);
@@ -138,8 +135,4 @@ public class FidelPlugin extends CordovaPlugin {
         }
     }
 
-    @Nullable
-    public Map<String, Object> getConstants() {
-    return constantsProviderList.get(0).getConstants();
-    }
 }

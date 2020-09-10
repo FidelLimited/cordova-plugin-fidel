@@ -6,6 +6,6 @@ import org.json.JSONArray;
 
 import java.util.Set;
 
-public interface CardSchemesAdapter extends ConstantsProvider {
+public interface CardSchemesAdapter{
     Set<Fidel.CardScheme> cardSchemesWithReadableArray(JSONArray cardSchemes);
 }
