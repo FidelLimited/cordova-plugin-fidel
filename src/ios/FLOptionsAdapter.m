@@ -6,14 +6,12 @@
 #else
 #import "Fidel/Fidel-Swift.h" // Required when used as a Pod in a Swift project
 #endif
-#import "FLCountryAdapter.h"
 #import "FLImageAdapter.h"
 #import "FLCardSchemesAdapter.h"
 
 
 @interface FLOptionsAdapter()
 
-@property (nonatomic, strong) id<FLCountryAdapter> countryAdapter;
 @property (nonatomic, strong) id<FLImageAdapter> imageAdapter;
 @property (nonatomic, strong) id<FLCardSchemesAdapter> cardSchemesAdapter;
 
@@ -21,12 +19,12 @@
 
 @implementation FLOptionsAdapter
 
-- (instancetype)initWithCountryAdapter:(id<FLCountryAdapter>)countryAdapter
-                          imageAdapter:(id<FLImageAdapter>)imageAdapter
-                    cardSchemesAdapter:(id<FLCardSchemesAdapter>)cardSchemesAdapter {
+
+- (instancetype)initWithimageAdapter:(id<FLImageAdapter>)imageAdapter
+                cardSchemesAdapter:(id<FLCardSchemesAdapter>)cardSchemesAdapter {
+    
     self = [super init];
     if (self) {
-        _countryAdapter = countryAdapter;
         _imageAdapter = imageAdapter;
         _cardSchemesAdapter = cardSchemesAdapter;
     }
@@ -59,7 +57,8 @@ NSString *const kTermsConditionsURLOptionKey = @"termsConditionsUrl";
     
     if ([allOptionKeys containsObject:kCountryOptionKey]) {
         id rawCountry = options[kCountryOptionKey];
-        FLFidel.country = [self.countryAdapter adaptedCountry:rawCountry];
+        NSNumber *rawValue = rawCountry;
+        FLFidel.country = (FLCountry) rawValue.intValue;
     }
     
     if ([allOptionKeys containsObject:kAutoScanOptionKey]) {

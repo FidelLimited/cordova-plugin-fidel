@@ -9,7 +9,6 @@
 #endif
 #import "FLSetupAdapter.h"
 #import "FLOptionsAdapter.h"
-#import "FLCountryFromJSAdapter.h"
 #import "ImageAdapter.h"
 #import "FLCardSchemesFromJSAdapter.h"
 #import "FLRuntimeObjectToDictionaryAdapter.h"
@@ -28,13 +27,11 @@
 
 - (void)pluginInitialize {
     if (self) {
-        id<FLCountryAdapter> countryAdapter;
-        countryAdapter = [[FLCountryFromJSAdapter alloc] init];
+
         id<FLImageAdapter> imageAdapter = [[ImageAdapter alloc] init];
         id<FLCardSchemesAdapter> cardSchemesAdapter = [[FLCardSchemesFromJSAdapter alloc] init];
-        _adapter = [[FLOptionsAdapter alloc] initWithCountryAdapter:countryAdapter
-                                                         imageAdapter:imageAdapter
-                                                   cardSchemesAdapter:cardSchemesAdapter];
+        _adapter = [[FLOptionsAdapter alloc] initWithimageAdapter:imageAdapter
+                                            cardSchemesAdapter:cardSchemesAdapter];
         _setupAdapter = [[FLSetupAdapter alloc] init];
         _objectAdapter = [[FLRuntimeObjectToDictionaryAdapter alloc] init];
     }
