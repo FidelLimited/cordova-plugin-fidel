@@ -23,8 +23,7 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@cordova/eslint-config": "^3.0.0",
-    "cordova-plugin-whitelist": "^1.3.4"
+    "@cordova/eslint-config": "^3.0.0"
   },
   "author": {
     "name": "Fidel",
@@ -32,9 +31,7 @@
   },
   "license": "MIT",
   "cordova": {
-    "plugins": {
-      "cordova-plugin-whitelist": {}
-    },
+    "plugins": {},
     "platforms": []
   }
 }
