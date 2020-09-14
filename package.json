@@ -1,8 +1,19 @@
 {
-  "name": "cordova-fidel-plugin",
+  "name": "cordova-plugin-fidel",
   "displayName": "Cordova Fidel Plugin",
   "version": "1.0.0",
   "description": "Cordova Plugin that allows developers to access the native Fidel iOS and Android SDKs",
+  "cordova": {
+    "id": "cordova-plugin-fidel",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FidelLimited/cordova-plugin-fidel.git"
+  },
   "main": "index.js",
   "scripts": {
     "lint": "eslint ."
@@ -25,13 +36,10 @@
   "devDependencies": {
     "@cordova/eslint-config": "^3.0.0"
   },
-  "author": {
-    "name": "Fidel",
-    "email": "developer@fidel.uk"
-  },
+  "author": "Fidel <developer@fidel.uk>",
   "license": "MIT",
-  "cordova": {
-    "plugins": {},
-    "platforms": []
-  }
+  "bugs": {
+    "url": "https://github.com/FidelLimited/cordova-plugin-fidel/issues"
+  },
+  "homepage": "https://github.com/FidelLimited/cordova-plugin-fidel#readme"
 }

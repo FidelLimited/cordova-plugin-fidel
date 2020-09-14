@@ -7,7 +7,7 @@ This plugin is a bridge between Cordova and Fidel's native iOS and Android SDKs.
 
 ## Getting started
 
-`$ npm install cordova-fidel-plugin`
+`$ cordova plugin add cordova-fidel-plugin`
 
 ### iOS
 
