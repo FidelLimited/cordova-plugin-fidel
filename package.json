@@ -23,6 +23,8 @@
     "fidel",
     "android",
     "ios",
+    "cordova-android",
+    "cordova-ios",
     "card",
     "cards",
     "linking",
