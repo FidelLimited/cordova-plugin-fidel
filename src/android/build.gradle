@@ -1,0 +1,56 @@
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+    }
+    lintOptions {
+        abortOnError false
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+}
+
+repositories {
+    jcenter()
+    google()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'org.apache.cordova:framework:9.0.0'
+    implementation 'com.github.FidelLimited:android-sdk:1.4.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.2'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test.ext:junit:1.1.1'
+    testImplementation 'org.assertj:assertj-core:1.7.0'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
+    testImplementation 'org.json:json:20200518'
+}
+  

@@ -2,19 +2,68 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="cordova-plugin-fidel" version="1.0.0">
     <name>Cordova Plugin Fidel</name>
-    <description>Cordova Plugin that allows developers to access the native Fidel iOS & Android SDKs</description>
+    <description>Cordova Plugin that allows developers to access the native Fidel iOS and Android SDKs</description>
     <license>Apache 2.0</license>
     <keywords>fidel,plugin, cordova, ios, android, cards, card, linking, visa, mastercard, american express, loyalty</keywords>
-    <js-module src="www/Fidel.js" name="fidel">
-        <clobbers target="window.plugin.fidel" />
+    <js-module src="www/FidelFunctions.js" name="FidelFunctions">
+        <clobbers target="window.plugins.fidelfunctions" />
+    </js-module>
+    <js-module src="www/Fidel.js" name="Fidel">
+        <clobbers target="Fidel" />
     </js-module>
     <platform name="android">
         <config-file target="config.xml" parent="/*">
-            <feature name="Fidel">
-                <param name="android-package" value="com.fidelcordovalibrary"/>
+            <feature name="FidelPlugin">
+                <param name="android-package" value="com.fidelcordovalibrary.FidelPlugin"/>
             </feature>
         </config-file>
-
-        <source-file src="src/android/main/java/com/fidelcordovalibrary/Fidel.java" target-dir="src/android/main/java/com/fidelcordovalibrary/" />
+        <framework src="com.github.FidelLimited:android-sdk:1.4.0" />
+        <framework src="javax.annotation:javax.annotation-api:1.3.2" />
+        <framework src="com.google.code.gson:gson:2.8.5" />
+        <framework src="org.jetbrains:annotations-java5:15.0" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/FidelPlugin.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelSetupAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelCardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/FidelOptionsAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/JSONObjectDataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/CardSchemesAdapter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataConverter.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/DataProcessor.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+        <source-file src="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction/ObjectFactory.java" target-dir="src/android/src/main/java/com/fidelcordovalibrary/adapters/abstraction" />
+    </platform>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="FidelPlugin">
+                <param name="ios-package" value="FidelPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="*-Info.plist" parent="CFBundleLocalizations">
+            <array>
+                <string>en</string>
+                <string>fr</string>
+                <string>sv</string>
+            </array>
+        </config-file>
+        <header-file src="src/ios/FidelPlugin.h"/>
+        <source-file src="src/ios/FidelPlugin.m"/>
+        <header-file src="src/ios/FLSetupAdapter.h"/>
+        <source-file src="src/ios/FLSetupAdapter.m"/>
+        <header-file src="src/ios/FLOptionsAdapter.h"/>
+        <source-file src="src/ios/FLOptionsAdapter.m"/>
+        <header-file src="src/ios/FLCardSchemesFromJSAdapter.h"/>
+        <source-file src="src/ios/FLCardSchemesFromJSAdapter.m"/>
+        <header-file src="src/ios/FLCardSchemesAdapter.h"/>
+        <header-file src="src/ios/FLRuntimeObjectToDictionaryAdapter.h"/>
+        <source-file src="src/ios/FLRuntimeObjectToDictionaryAdapter.m"/>
+        <header-file src="src/ios/FLObjectToDictionaryAdapter.h"/>
+            <podspec>
+      <config>
+        <source url="https://github.com/brightcove/BrightcoveSpecs.git" />
+        <source url="https://github.com/CocoaPods/Specs.git"/>
+      </config>
+      <pods use-frameworks="true">
+        <pod name="Fidel" spec="~> 1.8.1" />
+      </pods>
+    </podspec>
     </platform>
 </plugin>
