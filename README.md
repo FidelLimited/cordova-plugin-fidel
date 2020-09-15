@@ -45,6 +45,15 @@ buildscript {
 
 **4.** Our plugin contains native automated tests to ensure the quality of the plugin. To accomodate these tests, the plugin structure is a bit different than that of most plugins. Therefore, an extra step is needed after the plugin is installed: go to ```platforms/android/app/src/main/java/android/src/main/java``` and copy the ```com``` folder and its content to ```platforms/android/app/src/main/java/```, then delete the ```platforms/android/app/src/main/java/android/``` folder.
 
+**For projects using cordova-android 9.0.0 or later**  
+In order for the project to run, open the project's ```config.xml``` file and set the ```AndroidXEnabled``` preference to ```true```: 
+
+```java
+<platform name="android">
+        <preference name="AndroidXEnabled" value="true" />
+</platform>
+```
+
 ## How to use Fidel's Cordova plugin
 
 All Fidel functions are accesible via the ```window.plugins.fidelfunctions``` prefix.
