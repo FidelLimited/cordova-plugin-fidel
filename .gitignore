@@ -3,3 +3,5 @@ src/android/.gradle
 src/android/.idea
 src/android/build
 src/android/local.properties
+.vscode
+.idea
