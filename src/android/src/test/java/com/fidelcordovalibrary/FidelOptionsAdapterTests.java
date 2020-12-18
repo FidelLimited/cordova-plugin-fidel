@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import com.fidel.sdk.Fidel;
 import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.fakes.CardSchemeAdapterStub;
+import com.fidelcordovalibrary.fakes.CountryAdapterStub;
 import com.fidelcordovalibrary.fakes.JSONObjectStub;
 
 import org.json.JSONArray;
@@ -38,6 +39,7 @@ import static org.junit.Assert.assertTrue;
 public class FidelOptionsAdapterTests {
 
     private JSONObject jsonObject;
+    private CountryAdapterStub countryAdapterStub = new CountryAdapterStub();
     private CardSchemeAdapterStub cardSchemesAdapterStub = new CardSchemeAdapterStub();
     private FidelOptionsAdapter sut;
     private Context context;
@@ -52,7 +54,7 @@ public class FidelOptionsAdapterTests {
     @Before
     public final void setUp() {
         Activity activity = Robolectric.buildActivity(Activity.class).setup().get();
-        sut  = new FidelOptionsAdapter(cardSchemesAdapterStub,activity.getApplicationContext());
+        sut  = new FidelOptionsAdapter(countryAdapterStub, cardSchemesAdapterStub,activity.getApplicationContext());
         context = activity.getApplicationContext();
     }
 
@@ -67,7 +69,7 @@ public class FidelOptionsAdapterTests {
         Fidel.privacyURL = null;
         Fidel.termsConditionsURL = null;
         Fidel.metaData = null;
-        Fidel.country = null;
+        Fidel.allowedCountries = null;
         Fidel.supportedCardSchemes = EnumSet.allOf(Fidel.CardScheme.class);
     }
 
@@ -145,9 +147,9 @@ public class FidelOptionsAdapterTests {
 
     @Test
     public void test_IfHasCountryKeyButNoValue_DontSetItToTheSDK() {
-        String keyToTestFor = FidelOptionsAdapter.COUNTRY_KEY;
+        String keyToTestFor = FidelOptionsAdapter.ALLOWED_COUNTRIES_KEY;
         jsonObject = JSONObjectStub.JSONObjectWithExistingKeyButNoValue(keyToTestFor);
-        assertNull(Fidel.country);
+        assertNull(Fidel.allowedCountries);
     }
 
     //Tests when keys are missing
@@ -210,7 +212,7 @@ public class FidelOptionsAdapterTests {
     public void test_IfDoesntHaveCountryKey_DontSetItToTheSDK() {
         jsonObject = JSONObjectStub.JSONObjectWithKeyAndValue("random","somevalue");
         sut.process(jsonObject);
-        assertNull(Fidel.country);
+        assertNull(Fidel.allowedCountries);
     }
     @Test
     public void test_IfDoesntHaveCardSchemeKey_DontSetItToTheSDK() {

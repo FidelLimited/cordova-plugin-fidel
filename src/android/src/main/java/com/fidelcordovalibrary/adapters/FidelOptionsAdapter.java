@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 
 import com.fidel.sdk.Fidel;
 import com.fidelcordovalibrary.adapters.abstraction.CardSchemesAdapter;
+import com.fidelcordovalibrary.adapters.abstraction.CountryAdapter;
 import com.fidelcordovalibrary.adapters.abstraction.DataProcessor;
 
 import org.json.JSONException;
@@ -23,14 +24,17 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject> {
     public static final String PRIVACY_URL_KEY = "privacyUrl";
     public static final String TERMS_CONDITIONS_URL_KEY = "termsConditionsUrl";
     public static final String META_DATA_KEY = "metaData";
-    public static final String COUNTRY_KEY = "country";
+    public static final String ALLOWED_COUNTRIES_KEY = "allowedCountries";
     public static final String CARD_SCHEMES_KEY = "supportedCardSchemes";
 
+    private final CountryAdapter countryAdapter;
     private final CardSchemesAdapter cardSchemesAdapter;
     private Context context;
 
-    public FidelOptionsAdapter(CardSchemesAdapter cardSchemesAdapter,
+    public FidelOptionsAdapter(CountryAdapter countryAdapter,
+                               CardSchemesAdapter cardSchemesAdapter,
                                Context context) {
+        this.countryAdapter = countryAdapter;
         this.cardSchemesAdapter = cardSchemesAdapter;
         this.context = context;
     }
@@ -109,15 +113,12 @@ public final class FidelOptionsAdapter implements DataProcessor<JSONObject> {
                 Fidel.metaData = null;
             }
         }
-        if (valueIsValidFor(data, COUNTRY_KEY)) {
+        if (valueIsValidFor(data, ALLOWED_COUNTRIES_KEY)) {
             try {
-                int countryInt = data.getInt(COUNTRY_KEY);
-                if (countryInt < Fidel.Country.values().length) {
-                    Fidel.country = Fidel.Country.values()[countryInt];
-                }
+                Fidel.allowedCountries = countryAdapter.parseAllowedCountries(data.getJSONArray(ALLOWED_COUNTRIES_KEY));
             }
             catch (JSONException e) {
-                Fidel.country = null;
+                Fidel.allowedCountries = new Fidel.Country[]{Fidel.Country.UNITED_KINGDOM, Fidel.Country.IRELAND, Fidel.Country.UNITED_STATES, Fidel.Country.SWEDEN, Fidel.Country.JAPAN, Fidel.Country.CANADA};
             }
         }
         if (data.has(CARD_SCHEMES_KEY)) {

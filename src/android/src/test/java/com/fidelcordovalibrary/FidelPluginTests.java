@@ -90,7 +90,7 @@ public class FidelPluginTests {
 
     private void onActivityResultWithError() {
         LinkResultErrorCode errorCode = LinkResultErrorCode.USER_CANCELED;
-        intent.parcelableExtraToReturn = new LinkResult(errorCode, "Test error message");;
+        intent.parcelableExtraToReturn = new LinkResult(errorCode, "Test error message", "2020-01-21T23:42:03.522Z");;
         sut.onActivityResult(REQUEST_CODE, 0, intent);
     }
 }
