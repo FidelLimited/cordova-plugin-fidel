@@ -30,7 +30,7 @@
 NSString *const kCountryKey = @"Country";
 NSString *const kOptionKey = @"Option";
 NSString *const kBannerImageOptionKey = @"bannerImageName";
-NSString *const kCountryOptionKey = @"country";
+NSString *const kAllowedCountriesOptionKey = @"allowedCountries";
 NSString *const kAutoScanOptionKey = @"autoScan";
 NSString *const kCompanyNameOptionKey = @"companyName";
 NSString *const kMetaDataOptionKey = @"metaData";
@@ -48,10 +48,9 @@ NSString *const kTermsConditionsURLOptionKey = @"termsConditionsUrl";
         [FLFidel setBannerImage:bannerImage];
     }
     
-    if ([self valueIsValidFor:kCountryOptionKey fromDictionary:options]) {
-        id rawCountry = options[kCountryOptionKey];
-        NSNumber *rawValue = rawCountry;
-        FLFidel.country = (FLCountry) rawValue.intValue;
+    if ([self valueIsValidFor:kAllowedCountriesOptionKey fromDictionary:options]) {
+        id rawData = options[kAllowedCountriesOptionKey];
+        FLFidel.objc_allowedCountries = (NSArray<NSNumber *> *) rawData;
     }
     
     if ([self valueIsValidFor:kAutoScanOptionKey fromDictionary:options]) {
