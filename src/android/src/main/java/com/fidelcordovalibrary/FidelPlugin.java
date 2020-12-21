@@ -8,6 +8,7 @@ import com.fidel.sdk.LinkResult;
 import com.fidel.sdk.LinkResultError;
 import com.fidel.sdk.view.EnterCardDetailsActivity;
 import com.fidelcordovalibrary.adapters.FidelCardSchemesAdapter;
+import com.fidelcordovalibrary.adapters.FidelCountryAdapter;
 import com.fidelcordovalibrary.adapters.FidelOptionsAdapter;
 import com.fidelcordovalibrary.adapters.FidelSetupAdapter;
 import com.fidelcordovalibrary.adapters.JSONObjectDataConverter;
@@ -37,9 +38,10 @@ public class FidelPlugin extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         setupProcessor = new FidelSetupAdapter();
+        FidelCountryAdapter countryAdapter = new FidelCountryAdapter();
         FidelCardSchemesAdapter cardSchemesAdapter =
                 new FidelCardSchemesAdapter();
-        optionsAdapter = new FidelOptionsAdapter(cardSchemesAdapter, cordova.getActivity().getApplicationContext());
+        optionsAdapter = new FidelOptionsAdapter(countryAdapter, cardSchemesAdapter, cordova.getActivity().getApplicationContext());
         linkResultConverter = new JSONObjectDataConverter(new ObjectFactory<JSONObject>() {
             @Override
             public JSONObject create() {
