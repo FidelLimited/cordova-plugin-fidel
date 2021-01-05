@@ -134,7 +134,8 @@ Both `success` and `error` are objects that look like in the following examples:
   expMonth: 12 // for your convenience, this is the card expiration month
   expYear: 2023 // for your convenience, this is the card expiration year
   id: "card-id" // the card ID as registered on the Fidel platform
-  lastNumbers: "4001" //last numbers of the card
+  lastNumbers: "4001" // last numbers of the card
+  firstNumbers: "444400" // first numbers of the card, if made available
   live: false
   mapped: false
   metaData: {meta-data-1: "value1"} //the meta data that you specified for the Fidel SDK
