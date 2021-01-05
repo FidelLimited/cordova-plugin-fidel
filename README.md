@@ -50,6 +50,7 @@ buildscript {
 Go to ```platforms/android/app/src/main/java/android/src/main/java``` and copy the ```com``` folder and its content to ```platforms/android/app/src/main/java/```, then delete the ```platforms/android/app/src/main/java/android/``` folder.
 
 **4.2** If your Android package name contains *.com*
+
 Go to ```platforms/android/app/src/main/java/android/src/main/java/com``` and copy the ```fidelcordovalibrary``` folder and its content to ```platforms/android/app/src/main/java/com```, then delete the ```platforms/android/app/src/main/java/android/``` folder.
 
 **For projects using cordova-android 9.0.0 or later**  
