@@ -26,6 +26,7 @@ public class JSONObjectDataConverterTests {
 
     private static final String TEST_CARD_ID = "Test Card ID";
     private static final String TEST_ERROR_MESSAGE = "Test Error Message";
+    private static final String TEST_DATE = "2020-01-21T23:42:03.522Z";
 
     private JSONObjectDataConverter sut;
 
@@ -48,7 +49,7 @@ public class JSONObjectDataConverterTests {
     public void test_WhenAskedToConvertNullObject_ReturnNull() {
         assertNull(sut.getConvertedDataFor(null));
     }
-    //TODO: Fix failing test
+
     @Test
     public void test_WhenConvertingLinkResult_IncludeAllObjectFields() throws IllegalAccessException {
         LinkResult linkResult = new LinkResult(TEST_CARD_ID);
@@ -86,7 +87,7 @@ public class JSONObjectDataConverterTests {
     public void test_WhenConvertingLinkResultWithError_IncludeAllErrorFields() throws IllegalAccessException {
         LinkResultErrorCode errorCode = LinkResultErrorCode.USER_CANCELED;
         String errorMessage = TEST_ERROR_MESSAGE;
-        LinkResult linkResult = new LinkResult(errorCode, errorMessage);
+        LinkResult linkResult = new LinkResult(errorCode, errorMessage, TEST_DATE);
         Object objectToConvert = linkResult.getError();
 
         JSONObject receivedMap = sut.getConvertedDataFor(objectToConvert);
